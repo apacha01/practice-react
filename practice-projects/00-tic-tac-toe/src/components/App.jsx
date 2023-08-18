@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { TURN } from "../constants";
 import Board from "./Board"
+import WinnerModal from "./WinnerModal"
 
 
 function App() {
@@ -26,7 +27,10 @@ function App() {
 				turn = { turn }
 				updateWinner = { updateWinner }
 			></Board>
-			<div>winner:{winner}</div>
+			<WinnerModal
+				winner = {winner}
+				resetGame = {() => {}}
+			></WinnerModal>
 		</main>
 	)
 }
