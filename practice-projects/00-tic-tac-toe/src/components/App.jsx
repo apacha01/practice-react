@@ -1,6 +1,4 @@
 import TicTacToe from "./TicTacToe";
-import { TURN } from "../constants";
-
 
 function App() {
 	return (
