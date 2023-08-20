@@ -5,13 +5,21 @@ async function searchMovies(input) {
 	if (input === '') return null;
 
 	const search = `&s=${input}`;
-	const movies = await fetch(API_URL + search);
-	const moviesJson = await movies.json();
+	const moviesRes = await fetch(API_URL + search);
+	const moviesJson = await moviesRes.json();
 
 	if (!moviesJson.Response)
 		return null;
 
-	return moviesJson.Search;
+	let movies = moviesJson.Search.map((m) => {
+		return {
+			id: m.imdbID,
+			title: m.Title,
+			imgUrl: m.Poster,
+			year: m.Year
+		}
+	});
+	return movies;
 }
 
 export default searchMovies;

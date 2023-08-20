@@ -6,11 +6,11 @@ function ListOfMovies({ movies }) {
 			{movies
 				? movies.map(
 					m => {
-						return (<li className='movie' key={m.imdbID}>
+						return (<li className='movie' key={m.id}>
 							<Movie
-								title={m.Title}
-								year={m.Year}
-								imgUrl={m.Poster}
+								title={m.title}
+								year={m.year}
+								imgUrl={m.imgUrl}
 							></Movie>
 						</li>)
 					}
