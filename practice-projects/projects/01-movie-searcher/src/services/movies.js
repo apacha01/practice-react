@@ -8,9 +8,7 @@ async function searchMovies(input) {
 	const moviesRes = await fetch(API_URL + search);
 	const moviesJson = await moviesRes.json();
 
-	console.log(moviesJson);
-
-	if (!moviesJson.Response)
+	if (moviesJson.Error)
 		return null;
 
 	let movies = moviesJson.Search.map((m) => {

@@ -18,11 +18,26 @@ function App() {
 		// setMovies(batman.Search);
 	}
 
+	const handleChange = (event) => {
+		let newSearch = event.target.value;
+
+		// Avoid trailing spaces
+		if (newSearch.startsWith(' ')) return;
+		if (newSearch.endsWith(' ')) return;
+
+		// No numbers
+		if (newSearch.match(/\*\d\*/)) return;
+
+		setSearch(newSearch);
+	}
+
+	console.log('render');
+
 	return (
 		<main className="searcher">
 			<h1 className="searcher-title">Movie Searcher</h1>
 			<form className="searcher-form" onSubmit={handleSubmit}>
-				<input onChange={e => setSearch(e.target.value)} className="form-input" type="text" placeholder="Batman, Superman, Spiderman..." />
+				<input onChange={handleChange} value={search} className="form-input" type="text" placeholder="Batman, Superman, Spiderman..." />
 				<button className="form-btn">Search</button>
 			</form>
 			<section className='movies'>
