@@ -11,7 +11,7 @@ async function searchMovies(input) {
 	if (!moviesJson.Response)
 		return null;
 
-	let movies = moviesJson.Search.map((m) => {
+	let movies = moviesJson.Search.filter(m => m.Type === 'movie').map((m) => {
 		return {
 			id: m.imdbID,
 			title: m.Title,
@@ -19,6 +19,7 @@ async function searchMovies(input) {
 			year: m.Year
 		}
 	});
+
 	return movies;
 }
 
