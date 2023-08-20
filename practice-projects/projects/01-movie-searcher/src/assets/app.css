@@ -1,0 +1,25 @@
+body {
+	background-color: #242424;
+	color: whitesmoke;
+}
+
+.searcher {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.searcher-form {
+	display: flex;
+	justify-content: space-evenly;
+	width: 500px;
+}
+
+.form-input {
+	width: 50%;
+}
+
+.form-btn {
+	width: 25%;
+}
