@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import searchMovies from './services/movies';
-import Movie from './components/Movie';
+import ListOfMovies from './components/ListOfMovies';
+import batman from './examples/batman.json'
 import './assets/app.css'
 
 function App() {
@@ -8,8 +9,8 @@ function App() {
 	const [movies, setMovies] = useState(null);
 
 	const handleSubmit = async () => {
-		const movies = await searchMovies(search);
-		setMovies(movies);
+		// const movies = await searchMovies(search);
+		setMovies(batman.Search);
 	}
 
 	return (
@@ -20,22 +21,7 @@ function App() {
 				<button className="form-btn">Search</button>
 			</form>
 			<section className='movies'>
-				<ul className='movies-list'>
-					{movies
-						? movies.map(
-							m => {
-								return (<li className='movie' key={m.imdbID}>
-									<Movie
-										title={m.Title}
-										year={m.Year}
-										imgUrl={m.Poster}
-									></Movie>
-								</li>)
-							}
-						)
-						: "No movies"
-					}
-				</ul>
+				<ListOfMovies movies={movies}></ListOfMovies>
 			</section>
 		</main>
 	)
