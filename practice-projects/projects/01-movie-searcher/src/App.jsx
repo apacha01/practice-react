@@ -31,8 +31,6 @@ function App() {
 		setSearch(newSearch);
 	}
 
-	console.log('render');
-
 	return (
 		<main className="searcher">
 			<h1 className="searcher-title">Movie Searcher</h1>
