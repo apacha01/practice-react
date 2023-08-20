@@ -15,7 +15,7 @@ function ListOfMovies({ movies }) {
 						</li>)
 					}
 				)
-				: "No movies"
+				: <p>No results for this movie.</p>
 			}
 		</ul>
 	)

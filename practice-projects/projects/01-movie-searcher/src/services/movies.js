@@ -4,14 +4,16 @@ const API_URL = `http://www.omdbapi.com/?apikey=${API_KEY}`;
 async function searchMovies(input) {
 	if (input === '') return null;
 
-	const search = `&s=${input}`;
+	const search = `&type=movie&s=${input}`;
 	const moviesRes = await fetch(API_URL + search);
 	const moviesJson = await moviesRes.json();
+
+	console.log(moviesJson);
 
 	if (!moviesJson.Response)
 		return null;
 
-	let movies = moviesJson.Search.filter(m => m.Type === 'movie').map((m) => {
+	let movies = moviesJson.Search.map((m) => {
 		return {
 			id: m.imdbID,
 			title: m.Title,
