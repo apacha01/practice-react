@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import searchMovies from './services/movies';
+import Movie from './components/Movie';
 import './assets/app.css'
 
 function App() {
@@ -8,7 +9,6 @@ function App() {
 
 	const handleSubmit = async () => {
 		const movies = await searchMovies(search);
-		console.log(movies);
 		setMovies(movies);
 	}
 
@@ -20,13 +20,22 @@ function App() {
 				<button className="form-btn">Search</button>
 			</form>
 			<section className='movies'>
-				{movies
-					? movies.map(
-						(m, i) => {
-
-						}
-					)
-					: "No movies"}
+				<ul className='movies-list'>
+					{movies
+						? movies.map(
+							m => {
+								return (<li className='movie' key={m.imdbID}>
+									<Movie
+										title={m.Title}
+										year={m.Year}
+										imgUrl={m.Poster}
+									></Movie>
+								</li>)
+							}
+						)
+						: "No movies"
+					}
+				</ul>
 			</section>
 		</main>
 	)

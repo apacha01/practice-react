@@ -8,6 +8,9 @@ async function searchMovies(input) {
 	const movies = await fetch(API_URL + search);
 	const moviesJson = await movies.json();
 
+	if (!moviesJson.Response)
+		return null;
+
 	return moviesJson.Search;
 }
 

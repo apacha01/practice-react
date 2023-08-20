@@ -23,3 +23,24 @@ body {
 .form-btn {
 	width: 25%;
 }
+
+.movies {
+	width: 80vw;
+	margin: 0;
+	padding: 0;
+}
+
+.movies-list {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	text-align: center;
+	list-style-type: none;
+	gap: 15px;
+	margin: 0;
+	padding: 0;
+}
+
+.movie-img {
+	width: 100%;
+}
