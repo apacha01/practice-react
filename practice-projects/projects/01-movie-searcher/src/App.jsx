@@ -34,7 +34,7 @@ function App() {
 	return (
 		<main className="searcher">
 			<h1 className="searcher-title">Movie Searcher</h1>
-			<form className="searcher-form" onSubmit={handleSubmit}>
+			<form action='#' className="searcher-form" onSubmit={handleSubmit}>
 				<input onChange={handleChange} value={search} className="form-input" type="text" placeholder="Batman, Superman, Spiderman..." />
 				<button className="form-btn">Search</button>
 			</form>
