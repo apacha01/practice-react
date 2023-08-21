@@ -1,7 +1,9 @@
-const API_KEY = 'f5e92244';
+import env from '../../envars.json'
+const API_KEY = env.API_KEY;
 const API_URL = `http://www.omdbapi.com/?apikey=${API_KEY}`;
 
 async function searchMovies(input) {
+	console.log(env);
 	if (input === '') return null;
 
 	const search = `&type=movie&s=${input}`;
