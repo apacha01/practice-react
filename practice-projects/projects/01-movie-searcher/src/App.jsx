@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import searchMovies from './services/movies';
 import ListOfMovies from './components/ListOfMovies';
 import batman from './examples/batman.json'
@@ -28,7 +28,7 @@ function App() {
 		// No numbers
 		if (newSearch.match(/\*\d\*/)) return;
 
-		setSearch(newSearch);
+		setSearch(newSearch.toLowerCase());
 	}
 
 	return (

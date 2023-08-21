@@ -436,7 +436,12 @@ It would make no sense if by setting one boolean to true, another component that
 #### Passing reactive values between Hooks
 The code inside your custom Hooks will re-run during every re-render of your component. Because of this, hooks always receive the latest *props* and *state*.
 
+### Extra - Debouncing
+Debouncing is a practice in software development which makes sure that certain heavy tasks don't get fired so often.
+Example: let's say someone types any pin-code, and the app returns some data. The user types the pin-code 800001. When typed the first character, i.e. 8, it sends a request to the backend server. Then 0, and it sends another request to the server, and so on. This calls the API so many times, and in turn overuses the requests. So, to prevent this, something called a debounce function is used.
+In case of debouncing, a function is only trigger after X amount of time passed, so if the function is set to request after 500 ms (of the last keyboard trigger, not for the entire pin), the user will have time to type the entire code. **Important** This time should reset after every keyboard strike, otherwise the user would have only 500 ms to write the full pin.
 
+## Routers
 
 Helpful links:
 * https://felixgerschau.com/react-rerender-components/
