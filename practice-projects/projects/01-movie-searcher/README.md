@@ -8,5 +8,5 @@ App to search movies using the API `https://www.omdbapi.com/`.
 
 ### Optimization extras after finished
 - [x] Avoid same search twice in a row.
-- [ ] Automatically search while typing.
-- [ ] Avoid the search to be done to often while typing (debounce).
+- [x] Automatically search while typing.
+- [x] Avoid the search to be done to often while typing (debounce).
