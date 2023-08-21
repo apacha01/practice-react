@@ -12,7 +12,7 @@ function App() {
 	const handleSubmit = async () => {
 		if (prevSearch.current === search) return;
 
-		const movies = await searchMovies(search.toLowerCase());
+		const movies = await searchMovies(search.toLowerCase().trim());
 		prevSearch.current = search;
 		setMovies(movies);
 		// setMovies(batman.Search);
@@ -21,11 +21,8 @@ function App() {
 	const handleChange = (event) => {
 		let newSearch = event.target.value;
 
-		// Avoid trailing spaces
+		// Avoid starting spaces
 		if (newSearch.startsWith(' ')) return;
-
-		// No numbers
-		if (newSearch.match(/\*\d\*/)) return;
 
 		setSearch(newSearch);
 	}
