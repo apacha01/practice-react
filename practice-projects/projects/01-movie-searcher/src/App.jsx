@@ -12,7 +12,7 @@ function App() {
 	const handleSubmit = async () => {
 		if (prevSearch.current === search) return;
 
-		const movies = await searchMovies(search);
+		const movies = await searchMovies(search.toLowerCase());
 		prevSearch.current = search;
 		setMovies(movies);
 		// setMovies(batman.Search);
@@ -23,13 +23,20 @@ function App() {
 
 		// Avoid trailing spaces
 		if (newSearch.startsWith(' ')) return;
-		if (newSearch.endsWith(' ')) return;
 
 		// No numbers
 		if (newSearch.match(/\*\d\*/)) return;
 
-		setSearch(newSearch.toLowerCase());
+		setSearch(newSearch);
 	}
+
+	useEffect(() => {
+		const searchMovie = setTimeout(() => {
+			handleSubmit();
+		}, 500);
+
+		return () => clearTimeout(searchMovie);
+	}, [search]);
 
 	return (
 		<main className="searcher">
