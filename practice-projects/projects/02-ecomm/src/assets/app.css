@@ -25,6 +25,27 @@ h1 {
 
 .product {
 	list-style: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: solid 1px whitesmoke;
+	border-radius: 10px;
+	padding: 2px;
+}
+
+.cart-btn {
+	width: 40px;
+	height: 40px;
+	color: whitesmoke;
+	padding: 0;
+	border: solid 2px #2f2f2f;
+	border-radius: 5px;
+}
+
+.cart-btn:active {
+	border: solid 2px #222222;
+	background-color: #111111;
 }
 
 .filters {
