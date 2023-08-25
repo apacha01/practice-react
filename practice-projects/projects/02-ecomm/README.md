@@ -1,8 +1,8 @@
 Ecommerce
 
 -[x] Show list of products from JSON.
--[ ] Add filter by category.
--[ ] Add filter by price.
+-[x] Add filter by category.
+-[x] Add filter by price.
 -[ ] Use the useContext hokk to avoid passing unnecesary props (prop drilling).
 
 Shopping Cart:
