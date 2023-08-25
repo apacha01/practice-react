@@ -1,3 +1,4 @@
+/* Ecomm */
 body {
 	width: 80%;
 	margin-left: 10%;
@@ -11,8 +12,6 @@ h1 {
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
-	width: 90%;
-	margin-left: 5%;
 }
 
 .product-list {
@@ -31,7 +30,21 @@ h1 {
 	align-items: center;
 	border: solid 1px whitesmoke;
 	border-radius: 10px;
-	padding: 2px;
+	padding: 10px 2px;
+}
+
+.filters {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.price-filter,
+.category-filter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 7px;
 }
 
 .cart-btn {
@@ -48,18 +61,44 @@ h1 {
 	background-color: #111111;
 }
 
-.filters {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 90%;
-	margin-left: 5%;
+
+/* Sopping cart */
+.cart {
+	display: none;
+	background: black;
+	padding: 32px;
+	position: fixed;
+	right: 0px;
+	top: 0px;
+	width: 250px;
 }
 
-.price-filter,
-.category-filter {
+.cart-checkbox {
+	display: none;
+}
+
+.cart-toggle-btn {
+	margin-top: 20px;
+	padding: 10px;
+	border: solid 1px whitesmoke;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+.cart-toggle-btn:hover {
+	scale: 1.1;
+}
+
+.cart-toggle-btn~input:checked~.cart {
+	height: 100%;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.cart-product-quantity {
+	display: flex;
+	justify-content: space-evenly;
 	align-items: center;
-	gap: 7px;
+	gap: 20px;
 }
