@@ -1,9 +1,22 @@
-
+import Product from './components/Product.jsx'
+import { products } from './mocks/products.json'
 
 function App() {
 
 	return (
-		<h1>Hola</h1>
+		<ul>
+			{
+				products.map(product => {
+					return <li key={product.id}>
+						<Product
+							title={product.title}
+							imgUrl={product.thumbnail}
+							price={product.price}
+						/>
+					</li>
+				})
+			}
+		</ul>
 	)
 }
 
