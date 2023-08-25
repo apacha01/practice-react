@@ -1,9 +1,9 @@
 function Product({ title, price, imgUrl }) {
 	return (
 		<>
-			<h3>{title}</h3>
+			<h4>{title}</h4>
 			<img src={imgUrl} alt={`Image for the product: ${title}`} />
-			<p>Price: ${price}</p>
+			<p>Price: <strong>${price}</strong></p>
 		</>
 	)
 }
