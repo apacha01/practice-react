@@ -16,7 +16,9 @@ function App() {
 	}
 
 	useEffect(() => {
-		setFilteredProducts(fps => products.filter(fp => fp.price >= price))
+		setFilteredProducts(products.filter(
+			p => p.price >= price && (p.category === category || category === 'all')
+		));
 	}, [price, category]);
 
 	return (
