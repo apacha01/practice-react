@@ -13,9 +13,7 @@ function App() {
 	return (
 		<>
 			<h1>Apacha Ecomm</h1>
-			<section className="filters">
-				<Filters products={products} updateProductList={updateProductList}></Filters>
-			</section>
+			<Filters products={products} updateProductList={updateProductList}></Filters>
 			<main className='products'>
 				<ListOfProducts products={filteredProducts}></ListOfProducts>
 			</main>

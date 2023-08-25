@@ -19,7 +19,7 @@ function Filters({ products, updateProductList }) {
 	}, [price, category]);
 
 	return (
-		<>
+		<section className="filters">
 			<div className="price-filter">
 				<label htmlFor="price" className="price-label">From Price</label>
 				<input type="range" id="price" min={0} max={2000} onChange={onPriceChange} />
@@ -38,7 +38,7 @@ function Filters({ products, updateProductList }) {
 					<option value='groceries'>Groceries</option>
 				</select>
 			</div>
-		</>
+		</section >
 	)
 }
 
