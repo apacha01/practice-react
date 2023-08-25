@@ -19,8 +19,5 @@
   "homepage": "https://github.com/apacha01/practice-react#readme",
   "keywords": [],
   "author": "Agustin Pacheco",
-  "license": "ISC",
-  "devDependencies": {
-    "standard": "^17.1.0"
-  }
+  "license": "ISC"
 }
