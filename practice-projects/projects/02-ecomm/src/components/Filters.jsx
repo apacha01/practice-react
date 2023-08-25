@@ -1,41 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import useFilters from '../hooks/useFilters.js';
+import FILTERS_CATEGORY from "../constants/filters";
 
 function Filters({ products, updateProductList }) {
-	const [price, setPrice] = useState(0);
-	const [category, setCategory] = useState('all');
+	const { filters, updatePrice, updateCategory, filterProducts } = useFilters();
+
+	useEffect(() => {
+		updateProductList(filterProducts(products));
+	}, [filters]);
 
 	const onPriceChange = (e) => {
-		setPrice(e.target.value);
+		updatePrice(e.target.value);
 	}
 
 	const onCategoryChange = (e) => {
-		setCategory(e.target.value);
+		updateCategory(e.target.value);
 	}
-
-	useEffect(() => {
-		updateProductList(products.filter(
-			p => p.price >= price && (p.category === category || category === 'all')
-		));
-	}, [price, category]);
 
 	return (
 		<section className="filters">
 			<div className="price-filter">
 				<label htmlFor="price" className="price-label">From Price</label>
 				<input type="range" id="price" min={0} max={2000} onChange={onPriceChange} />
-				<p><strong>$</strong>{price}</p>
+				<p><strong>$</strong>{filters.price}</p>
 			</div>
 
 			<div className="category-filter">
 				<label htmlFor="category" className="price-label">Category</label>
 				<select id="category" onChange={onCategoryChange}>
-					<option value='all'>All</option>
-					<option value='home-decoration'>Home Decoration</option>
-					<option value='laptops'>Laptops</option>
-					<option value='smartphones'>Smartphones</option>
-					<option value='fragrances'>Fragrances</option>
-					<option value='skincare'>Skincare</option>
-					<option value='groceries'>Groceries</option>
+					<option value={FILTERS_CATEGORY.ALL} >All</option>
+					<option value={FILTERS_CATEGORY.HOME_DECORATION} >Home Decoration</option>
+					<option value={FILTERS_CATEGORY.LAPTOPS} >Laptops</option>
+					<option value={FILTERS_CATEGORY.SMARTPHONES} >Smartphones</option>
+					<option value={FILTERS_CATEGORY.FRAGRANCES} >Fragrances</option>
+					<option value={FILTERS_CATEGORY.SKINCARE} >Skincare</option>
+					<option value={FILTERS_CATEGORY.GROCERIES} >Groceries</option>
 				</select>
 			</div>
 		</section >
