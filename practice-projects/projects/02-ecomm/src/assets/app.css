@@ -1,3 +1,12 @@
+body {
+	width: 80%;
+	margin-left: 10%;
+}
+
+h1 {
+	text-align: center;
+}
+
 .products {
 	display: flex;
 	justify-content: space-evenly;
@@ -11,8 +20,25 @@
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 	gap: 30px;
 	width: 100%;
+	padding: 0;
 }
 
 .product {
 	list-style: none;
+}
+
+.filters {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 90%;
+	margin-left: 5%;
+}
+
+.price-filter,
+.category-filter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 7px;
 }
