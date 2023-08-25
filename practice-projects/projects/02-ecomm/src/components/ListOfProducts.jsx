@@ -1,6 +1,6 @@
 import Product from "./Product.jsx";
 
-function ListOfProducts({ products }) {
+function ListOfProducts({ products, addToCart }) {
 	return (
 		<ul className="product-list">
 			{
@@ -10,6 +10,7 @@ function ListOfProducts({ products }) {
 							title={product.title}
 							imgUrl={product.thumbnail}
 							price={product.price}
+							addToCart={() => addToCart(product)}
 						/>
 					</li>
 				})
