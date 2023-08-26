@@ -1,14 +1,14 @@
 Ecommerce
 
--[x] Show list of products from JSON.
--[x] Add filter by category.
--[x] Add filter by price.
+- [x] Show list of products from JSON.
+- [x] Add filter by category.
+- [x] Add filter by price.
 
 Shopping Cart:
 
--[x] Implement addition of products to shopping cart.
--[x] Implement removal of products to shopping cart.
--[x] Implement modification of quantity of a product to shopping cart.
--[x] Sinchronize changes in the shopping cart with the product list.
--[x] Use the useContext hook to avoid passing unnecesary props (prop drilling).
--[x] Use localStorage to save the shopping cart.
+- [x] Implement addition of products to shopping cart.
+- [x] Implement removal of products to shopping cart.
+- [x] Implement modification of quantity of a product to shopping cart.
+- [x] Sinchronize changes in the shopping cart with the product list.
+- [x] Use the useContext hook to avoid passing unnecesary props (prop drilling).
+- [x] Use localStorage to save the shopping cart.
