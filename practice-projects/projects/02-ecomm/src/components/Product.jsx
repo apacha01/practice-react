@@ -1,17 +1,23 @@
-import { AddToCartIcon, RemoveFromCartIcon } from "./Icons";
+import useCart from "../hooks/useCart.js";
+import { AddToCartIcon, RemoveFromCartIcon } from "./Icons.jsx";
 
-function Product({ title, price, imgUrl, addToCart, removeFromCart, isInCart }) {
+function Product({ product }) {
+	const { addToCart, removeFromCart, isInCart } = useCart();
+
 	return (
 		<>
-			<h4>{title}</h4>
-			<img src={imgUrl} alt={`Image for the product: ${title}`} />
-			<p>Price: <strong>${price}</strong></p>
+			<h4>{product.title}</h4>
+			<img src={product.thumbnail} alt={`Image for the product: ${product.title}`} />
+			<p>Price: <strong>${product.price}</strong></p>
 			<button
-				className={`cart-btn ${isInCart ? "remove-cart-btn" : "add-cart-btn"}`}
-				onClick={isInCart ? removeFromCart : addToCart}
+				className={`cart-btn ${isInCart(product) ? "remove-cart-btn" : "add-cart-btn"}`}
+				onClick={isInCart(product)
+					? () => removeFromCart(product)
+					: () => addToCart(product)
+				}
 			>
 				{
-					isInCart
+					isInCart(product)
 						? <RemoveFromCartIcon></RemoveFromCartIcon>
 						: <AddToCartIcon></AddToCartIcon>
 				}

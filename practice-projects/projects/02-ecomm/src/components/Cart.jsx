@@ -1,6 +1,9 @@
-import CartItem from "./CartProduct";
+import useCart from "../hooks/useCart.js";
+import CartProduct from "./CartProduct.jsx";
 
-function Cart({ products, addToCart, removeFromCart, resetCart }) {
+function Cart() {
+	const { cart, resetCart } = useCart();
+
 	return (
 		<>
 			<label className="cart-toggle-btn" htmlFor="cart">Cart</label>
@@ -8,19 +11,14 @@ function Cart({ products, addToCart, removeFromCart, resetCart }) {
 
 			<aside className="cart">
 				{
-					products?.length > 0
+					cart?.length > 0
 						?
 						<>
 							{
-								products.map(p => {
+								cart.map(p => {
 									return (
 										<li className="product" key={p.id}>
-											<CartItem
-												product={p}
-												addToCart={addToCart}
-												removeFromCart={removeFromCart}
-											>
-											</CartItem>
+											<CartProduct product={p}></CartProduct>
 										</li>
 									)
 								})

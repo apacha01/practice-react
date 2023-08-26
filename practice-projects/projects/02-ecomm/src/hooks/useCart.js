@@ -1,36 +1,14 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { CartContext } from "../contexts/cart";
 
 function useCart() {
-	const [cartProducts, setCartProducts] = useState([]);
+	const context = useContext(CartContext);
 
-	const addToCart = (product) => {
-		const productIndex = cartProducts.findIndex(p => p.id === product.id);
-
-		// product already in cart
-		if (productIndex >= 0) {
-			const newCartProducts = cartProducts.map(p => {
-				if (p.id === product.id)
-					return { ...p, quantity: p.quantity + 1 }
-				else
-					return p;
-			});
-			setCartProducts(newCartProducts);
-		}
-		// product not in cart
-		else {
-			setCartProducts(cps => ([...cps, { ...product, quantity: 1 }]));
-		}
+	if (context === undefined) {
+		throw new Error('useCart must be called within a CartProvider.');
 	}
 
-	const removeFromCart = (product) => {
-		setCartProducts(cps => cps.filter(p => p.id != product.id));
-	}
-
-	const resetCart = () => {
-		setCartProducts([]);
-	}
-
-	return { cartProducts, addToCart, removeFromCart, resetCart };
+	return context;
 }
 
 export default useCart;

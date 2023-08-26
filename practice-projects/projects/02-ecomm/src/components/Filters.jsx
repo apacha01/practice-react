@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import useFilters from '../hooks/useFilters.js';
-import FILTERS_CATEGORY from "../constants/filters";
+import FILTERS_CATEGORY from "../constants/filters.js";
 
 function Filters({ products, updateProductList }) {
 	const { filters, updatePrice, updateCategory, filterProducts } = useFilters();

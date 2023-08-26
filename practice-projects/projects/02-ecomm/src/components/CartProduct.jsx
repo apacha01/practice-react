@@ -1,6 +1,9 @@
-import { RemoveFromCartIcon } from "./Icons";
+import { RemoveFromCartIcon } from "./Icons.jsx";
+import useCart from "../hooks/useCart.js";
 
-function CartItem({ product, addToCart, removeFromCart }) {
+function CartProduct({ product }) {
+	const { addToCart, removeFromCart } = useCart();
+
 	return (
 		<>
 			<h4>{product.title}</h4>
@@ -17,4 +20,4 @@ function CartItem({ product, addToCart, removeFromCart }) {
 	);
 }
 
-export default CartItem;
+export default CartProduct;
