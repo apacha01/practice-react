@@ -10,7 +10,7 @@ function CartItem({ product, addToCart, removeFromCart }) {
 				<small>Qty: {product.quantity}</small>
 				<button onClick={() => addToCart(product)}>+</button>
 			</div>
-			<button className="cart-btn" onClick={() => removeFromCart(product)}>
+			<button className="cart-btn remove-cart-btn" onClick={() => removeFromCart(product)}>
 				<RemoveFromCartIcon></RemoveFromCartIcon>
 			</button>
 		</>

@@ -1,6 +1,6 @@
 import Product from "./Product.jsx";
 
-function ListOfProducts({ products, addToCart }) {
+function ListOfProducts({ products, addToCart, removeFromCart, isInCart }) {
 	return (
 		<ul className="product-list">
 			{
@@ -11,6 +11,8 @@ function ListOfProducts({ products, addToCart }) {
 							imgUrl={product.thumbnail}
 							price={product.price}
 							addToCart={() => addToCart(product)}
+							removeFromCart={() => removeFromCart(product)}
+							isInCart={isInCart(product)}
 						/>
 					</li>
 				})

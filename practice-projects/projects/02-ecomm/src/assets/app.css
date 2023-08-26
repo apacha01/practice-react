@@ -52,15 +52,29 @@ h4 {
 .cart-btn {
 	width: 40px;
 	height: 40px;
-	background-color: #a2a2a2;
 	padding: 0;
-	border: solid 2px #c2c2c2;
 	border-radius: 5px;
 }
 
-.cart-btn:active {
-	border: solid 2px #a2a2a2;
+.add-cart-btn {
+	background-color: #a2a2a2;
+	border: solid 2px #c2c2c2;
+}
+
+.remove-cart-btn {
+	background-color: indianred;
+	border: solid 2px darkred;
+	box-shadow: 0 1px 1.5px #390000;
+}
+
+.add-cart-btn:active {
 	background-color: #727272;
+	border: solid 2px #a2a2a2;
+}
+
+.remove-cart-btn:active {
+	background-color: #ad3c3c;
+	border: solid 2px #6b0000;
 }
 
 

@@ -13,6 +13,10 @@ function App() {
 		setFilteredProducts(products);
 	}
 
+	const isInCart = (product) => {
+		return cartProducts.some(p => p.id === product.id);
+	}
+
 	return (
 		<>
 			<Cart
@@ -28,6 +32,8 @@ function App() {
 				<ListOfProducts
 					products={filteredProducts}
 					addToCart={addToCart}
+					removeFromCart={removeFromCart}
+					isInCart={isInCart}
 				>
 				</ListOfProducts>
 			</main>
