@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FILTERS_CATEGORY from "../constants/filters";
+import FILTERS_CATEGORY from "../constants/filters.js";
 
 function useFilters() {
 	const [filters, setFilters] = useState({ price: 0, category: FILTERS_CATEGORY.ALL });
