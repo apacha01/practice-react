@@ -9,14 +9,19 @@ const CartContext = createContext();
 
 // 2
 function CartProvider({ children }) {
-	const [cartProducts, setCartProducts] = useState([]);
+	const cartInitialState = JSON.parse(window.localStorage.getItem('cart')) || [];
+	const [cartProducts, setCartProducts] = useState(cartInitialState);
+
+	const updateLocalStorage = (cart) => {
+		window.localStorage.setItem('cart', JSON.stringify(cart));
+	}
 
 	const addToCart = (product) => {
 		const productIndex = cartProducts.findIndex(p => p.id === product.id);
-
+		let newCartProducts;
 		// product already in cart
 		if (productIndex >= 0) {
-			const newCartProducts = cartProducts.map(p => {
+			newCartProducts = cartProducts.map(p => {
 				if (p.id === product.id)
 					return { ...p, quantity: p.quantity + 1 }
 				else
@@ -26,16 +31,22 @@ function CartProvider({ children }) {
 		}
 		// product not in cart
 		else {
-			setCartProducts(cps => ([...cps, { ...product, quantity: 1 }]));
+			newCartProducts = [...cartProducts, { ...product, quantity: 1 }];
+			setCartProducts(newCartProducts);
 		}
+
+		updateLocalStorage(newCartProducts);
 	}
 
 	const removeFromCart = (product) => {
-		setCartProducts(cps => cps.filter(p => p.id != product.id));
+		const newCartProducts = cartProducts.filter(p => p.id != product.id);
+		setCartProducts(newCartProducts);
+		updateLocalStorage(newCartProducts);
 	}
 
 	const resetCart = () => {
 		setCartProducts([]);
+		updateLocalStorage([]);
 	}
 
 	const isInCart = (product) => {

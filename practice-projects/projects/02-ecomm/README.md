@@ -11,4 +11,4 @@ Shopping Cart:
 -[x] Implement modification of quantity of a product to shopping cart.
 -[x] Sinchronize changes in the shopping cart with the product list.
 -[x] Use the useContext hook to avoid passing unnecesary props (prop drilling).
--[ ] Use localStorage to save the shopping cart.
+-[x] Use localStorage to save the shopping cart.
