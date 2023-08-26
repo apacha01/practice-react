@@ -1,7 +1,7 @@
 import { useState } from 'react'
+import { products } from './mocks/products.json'
 import ListOfProducts from './components/ListOfProducts.jsx'
 import Filters from './components/Filters.jsx'
-import { products } from './mocks/products.json'
 import Cart from './components/Cart.jsx';
 import useCart from './hooks/useCart.js';
 
