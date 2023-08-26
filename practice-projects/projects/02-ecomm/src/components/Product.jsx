@@ -1,3 +1,5 @@
+import { AddToCartIcon } from "./Icons";
+
 function Product({ title, price, imgUrl, addToCart }) {
 	return (
 		<>
@@ -5,7 +7,7 @@ function Product({ title, price, imgUrl, addToCart }) {
 			<img src={imgUrl} alt={`Image for the product: ${title}`} />
 			<p>Price: <strong>${price}</strong></p>
 			<button className="cart-btn" onClick={addToCart}>
-				<i className="fa-solid fa-cart-plus"></i>
+				<AddToCartIcon></AddToCartIcon>
 			</button>
 		</>
 	)

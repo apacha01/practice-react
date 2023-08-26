@@ -1,3 +1,5 @@
+import { RemoveFromCartIcon } from "./Icons";
+
 function CartItem({ product, addToCart, removeFromCart }) {
 	return (
 		<>
@@ -8,7 +10,9 @@ function CartItem({ product, addToCart, removeFromCart }) {
 				<small>Qty: {product.quantity}</small>
 				<button onClick={() => addToCart(product)}>+</button>
 			</div>
-			<button onClick={() => removeFromCart(product)}>Remove</button>
+			<button className="cart-btn" onClick={() => removeFromCart(product)}>
+				<RemoveFromCartIcon></RemoveFromCartIcon>
+			</button>
 		</>
 	);
 }

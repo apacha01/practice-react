@@ -52,15 +52,15 @@ h4 {
 .cart-btn {
 	width: 40px;
 	height: 40px;
-	color: whitesmoke;
+	background-color: #a2a2a2;
 	padding: 0;
-	border: solid 2px #2f2f2f;
+	border: solid 2px #c2c2c2;
 	border-radius: 5px;
 }
 
 .cart-btn:active {
-	border: solid 2px #222222;
-	background-color: #111111;
+	border: solid 2px #a2a2a2;
+	background-color: #727272;
 }
 
 
