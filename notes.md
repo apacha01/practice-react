@@ -108,7 +108,7 @@ function myComponent() {
 *Note:* An arrow function inside the tag could also be used.
 
 ### What is a Hook?
-Hooks are JS functions that allow developers to *hook into* React state and life-cycle features from **Function Components** (and *only function components*, see more on *Type of Components*). This Hooks start with the word `use` (e.g. `useState`).
+Hooks are JS functions that allow developers to *hook into* React state and life-cycle features from **Function Components** (and *only function components*, see more on [Types of Components](#types-of-components)). This Hooks start with the word `use` (e.g. `useState`).
 Hooks are more restrictive than other functions. They can only be called at the top of your components (or other Hooks).
 
 ### Updating the screen
@@ -441,7 +441,148 @@ Debouncing is a practice in software development which makes sure that certain h
 Example: let's say someone types any pin-code, and the app returns some data. The user types the pin-code 800001. When typed the first character, i.e. 8, it sends a request to the backend server. Then 0, and it sends another request to the server, and so on. This calls the API so many times, and in turn overuses the requests. So, to prevent this, something called a debounce function is used.
 In case of debouncing, a function is only trigger after X amount of time passed, so if the function is set to request after 500 ms (of the last keyboard trigger, not for the entire pin), the user will have time to type the entire code. **Important** This time should reset after every keyboard strike, otherwise the user would have only 500 ms to write the full pin.
 
-## Routers
+## React Router
+Cheat sheet: `https://stackdiary.com/tutorials/react-router-cheat-sheet-reference/`.
+Official Docs: `https://reactrouter.com/en/main/start/overview`.
+Routers in React enable client-side routing, an extremely important concept for *Single Page Applications* (SPA).
+**React Router** is the most famous library to implement routing in React apps. It includes several components and functions that helps with the routing of an app.
+
+### Routers Components
+There are different types of router depending on the environment an app is running in (but an app should only use one router):
+* `<Router>`: the low-level interface that is shared by all router components.
+*   `<BrowserRouter>`:  For web projects.
+*   `<MemoryRouter>`:  For testing.
+*   `<HashRouter>`:  For web browsers when the URL should not (or cannot) be sent to the server.
+*   `<NativeRouter>`: For React Native projects. 
+*   `<StaticRouter>`: For web apps in node.
+
+In terms of React, **routers are context providers** that supplies routing information to the rest of the app. So an app should be contained within a **router** to  enable routing (e.g. `<Router><App /></Router>`).
+But there's also the option to use a function instead of a component (e.g. `createBrowserRouter()` or `createHashRouter`), with the exception of the Native router. This functions come with v6.4 and support the new data APIs. List of APIs: `https://reactrouter.com/en/main/routers/picking-a-router#data-apis`
+
+### Route Component
+Routes are objects passed to the router creation functions. They couple URL segments to components, data loading and data mutations.
+```
+{
+	// it renders this element
+	element: <TeamList />,
+	// when the URL matches this segment
+	path: "/teams/",
+	// with this data loaded before rendering
+	loader: async ({ request, params }) => {
+		return fetch(
+			`/fake/api/teams.json`,
+			{ signal: request.signal }
+		);
+	},
+	// performing this mutation when data is submitted to it
+	action: async ({ request }) => {
+		return updateFakeTeam(await request.formData());
+	},
+	// and renders this element in case something went wrong
+	errorElement: <ErrorBoundary />,
+}
+``` 
+In case the components are used, the props to the element are identical to the properties of the route objects.
+*Note:* the `loader`, `action` and `errorElement` are part of the data APIs and therefore not available within a router component, only the router creation functions.
+
+#### Dynamic Paths
+Within a `<Route>` component the path uses a special syntax for dynamic segments in the path, the `:` (colon). 
+```
+// code
+<Route path: "/teams/:teamId" element{<Team />} />
+// more code
+```
+When using dynamic segments, inside the component rendered by the `<Route>`, there's a special hook to retrieve this parameters in the path: `useParams()`.
+The `useParams` hook returns an object of key / value pairs of the dynamic params from the current URL that were matched by the `<Route path>`. Child routes inherit *all* params from their parent routes.
+```
+function Team () {
+	const { teamId } = useParams();
+}
+```
+You can have multiple dynamic segments in one route path:
+`<Route path="/c/:categoryId/p/:productId" />;`
+But these cannot be "partial":
+* 🚫 `/teams-:teamId`
+* ✅ `/teams/:teamId`
+* 🚫 `/:category--:productId`
+* ✅ `/:category/:productId`
+
+#### Optional Paths
+A route segment can be optional by adding a `?` to the end of the segment: `path="/:lang?/categories"`.
+
+#### Splats
+Also known as *catchall* and *star* segments. If a route path pattern ends with `/*` then it will match any characters following the `/`, including other `/` characters.
+
+### Routes Component
+Rendered anywhere in the app, `<Routes>` will match a set of child routes from the current location. Whenever the location changes, `<Routes>` looks through all its child routes to find the best match and renders that branch of the UI.
+Previously, a `<Switch>` component existed that went downwards to select a route, but `<Routes>` doesn't do that, it does NOT go top to bottom but rather ranks the routes according to the number of segments, static segments, dynamic segments, splats, etc. and picks the most specific match.
+For example:
+```
+<Route path="/teams/:teamId" />
+<Route path="/teams/new" />
+```
+The URL `http://example.com/teams/new` matches both routes, but the second one is more specific.
+
+### Link Component
+A `<Link>` is an element that lets the user navigate to another page by clicking or tapping on it. This component renders an accessible `<a>` element with a real `href`, but slightly different.
+
+#### `<a>` vs `<Link>`
+The `<a>` tag tells the browser to redirect to the `href` page, i.e. another page. On the contrary, the `<Link>` component uses client-side routing [so it doesn't redirect to another page, but shows a different URL while remaining in the page and changing it's content (this allows creating SPAs)].
+However there's a prop called `reloadDocument` which makes the `<Link>` component act as a normal `<a>` with an `href` (skips client-side routing and let the browser handle the transition normally).
+
+#### Routes in the `<Link>` component
+To redirect to a certain path one needs to specify the `to` prop with the path to redirect to. A `path` can be:
+* A relative value (that does not begin with `/`): resolves relative to the parent route.
+* `..`: links to routes further up the hierarchy.
+* Relative to: it's possible to specify whether a route is relative to another route or a  path (`relative="route"` or `relative="path"`). e.g.
+	```
+	<Route path="/" element={...}>
+	  <Route path="contacts/:id" element={...} />
+	  <Route path="contacts/:id/edit" element={...} />
+	</Route>;
+	```
+	* `relative="route"`: from `contacts/:id/edit` using `..` in a `<Link>` goes up to `'/'` (the previous route).
+	* `relative="path"`: from `contacts/:id/edit` using `..` in a `<Link>` goes up to `contacts/:id` (the previous path).
+
+### NavLink Component
+A `<NavLink>` is a special kind of `<Link>` that knows whether or not it is *active* or *pending*. By default, an active class is added to this component when it is active (for CSS).
+This special component allows the props `className` and `style` to receive functions which have two parameters: `isActive` and `IsPending` for conditional styling.
+
+### Navigate Component
+A `<Navigate>` element changes the current location when it is rendered. It's usually better to use `redirect` in `loaders` and `actions` (refer to [Route Component](#route-component)) than this hook wrapper or the hook itself (`useNavigate()`).
+
+### Outlet Component
+An `<Outlet>` should be used in parent route elements to render their child route elements, this allows nested UI. If the parent route matched exactly, it will render a child index route or nothing if there is no index route.
+```
+function Dashboard() {
+	return (
+		<div>
+			<h1>Dashboard</h1>
+			{/* This element will render either <DashboardMessages> when the URL is "/messages", <DashboardTasks> at "/tasks", or null if it is "/" */}
+			<Outlet />
+		</div>
+	);
+}
+
+function App() {
+	return (
+		<Routes>
+			<Route path="/" element={<Dashboard />}>
+				<Route
+					path="messages"
+					element={<DashboardMessages />}
+				/>
+				<Route path="tasks" element={<DashboardTasks />} />
+			</Route>
+		</Routes>
+	);
+}
+```
+
+### A "problem" with client-side routing
+When using **React Router** for client-side routing in your SPA, URL routes *may* not work when a page is refreshed, the URL is written manually, or when the URL is shared. This issue may be due to the browser making a GET request to the server for a route that is not handled on it. There's client-side routing set up, but not a server-side routing set up.
+This blog discusses some possible solutions: `https://sentry.io/answers/why-don-t-react-router-urls-work-when-refreshing-or-writing-manually/`.
+
 
 Helpful links:
 * https://felixgerschau.com/react-rerender-components/
