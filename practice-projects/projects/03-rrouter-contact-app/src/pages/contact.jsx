@@ -35,14 +35,14 @@ export default function Contact() {
 					<p>
 						<a
 							target="_blank"
-							href={`https://twitter.com/${contact.twitter}`}
+							href={`${contact.twitter}`}
 						>
 							{contact.twitter}
 						</a>
 					</p>
 				)}
 
-				{contact.notes && <p>{contact.notes}</p>}
+				{contact.phone && <p>{contact.phone}</p>}
 
 				<div>
 					<Form action="edit">
@@ -72,6 +72,7 @@ export default function Contact() {
 function Favorite({ contact }) {
 	// yes, this is a `let` for later
 	let favorite = contact.favorite;
+	console.log(favorite);
 	return (
 		<Form method="post">
 			<button
