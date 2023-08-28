@@ -3,11 +3,11 @@ import { getContact } from "../services/contacts";
 
 export async function loader({ params }) {
 	const contact = await getContact(params.contactId);
-	return contact;
+	return { contact };
 }
 
 export default function Contact() {
-	const contact = useLoaderData();
+	const { contact } = useLoaderData();
 
 	return (
 		<div id="contact">
