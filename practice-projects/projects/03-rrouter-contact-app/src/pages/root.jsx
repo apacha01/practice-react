@@ -54,7 +54,11 @@ export default function Root() {
 										) : (
 											<i>No Name</i>
 										)}{" "}
-										{contact.favorite && <span>★</span>}
+										{
+											contact.favorite === "true"
+												? <span>★</span>
+												: null
+										}
 									</Link>
 								</li>
 							))}

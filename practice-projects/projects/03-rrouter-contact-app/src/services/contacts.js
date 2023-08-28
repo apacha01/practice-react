@@ -1,8 +1,12 @@
 import { contacts } from '../mocks/contacts.json'
 
+function extractContacts() { return JSON.parse(window.localStorage.getItem("contacts")); }
+
 export async function getContacts() {
-	localStorage.setItem('contacts', contacts);
-	return contacts;
+	if (!window.localStorage.getItem('contacts')) {
+		window.localStorage.setItem("contacts", JSON.stringify(contacts));
+	}
+	return extractContacts();
 }
 
 export async function createContact() {
@@ -15,13 +19,13 @@ export async function createContact() {
 }
 
 export async function getContact(id) {
-	let contacts = localStorage.getItem("contacts");
+	let contacts = extractContacts();
 	let contact = contacts.find(contact => contact.id === id);
 	return contact ?? null;
 }
 
 export async function updateContact(id, updates) {
-	let contacts = localStorage.getItem("contacts");
+	let contacts = extractContacts();
 	let contact = contacts.find(contact => contact.id === id);
 	if (!contact) throw new Error("No contact found for", id);
 	Object.assign(contact, updates);
@@ -30,7 +34,7 @@ export async function updateContact(id, updates) {
 }
 
 export async function deleteContact(id) {
-	let contacts = localStorage.getItem("contacts");
+	let contacts = extractContacts();
 	let index = contacts.findIndex(contact => contact.id === id);
 	if (index >= 0) {
 		contacts.splice(index, 1);
@@ -41,5 +45,5 @@ export async function deleteContact(id) {
 }
 
 async function set(contacts) {
-	return localStorage.setItem("contacts", contacts);
+	return window.localStorage.setItem("contacts", JSON.stringify(contacts));
 }
