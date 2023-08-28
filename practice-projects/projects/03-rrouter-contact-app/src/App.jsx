@@ -4,6 +4,7 @@ import ErrorPage from "./pages/error-page.jsx";
 import Contact, { loader as contactLoader } from "./pages/contact.jsx";
 import EditContact, { action as editAction } from "./pages/edit.jsx";
 import { action as destroyAction } from "./pages/destroy.jsx";
+import Index from "./pages/index.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -13,6 +14,9 @@ const router = createBrowserRouter([
 		loader: rootLoader,
 		action: rootAction,
 		children: [
+			// 'index: true' tells the router to match and render this route 
+			// when the user is at the parent route's exact path ('/')
+			{ index: true, element: <Index /> },
 			{
 				path: "contacts/:contactId",
 				element: <Contact />,
@@ -27,6 +31,7 @@ const router = createBrowserRouter([
 			{
 				path: "contacts/:contactId/destroy",
 				action: destroyAction,
+				errorElement: <h3>Oops! There was an error.</h3>,
 			},
 		],
 	},
