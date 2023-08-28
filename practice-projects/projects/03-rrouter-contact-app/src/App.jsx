@@ -3,6 +3,7 @@ import Root, { loader as rootLoader, action as rootAction } from "./pages/root.j
 import ErrorPage from "./pages/error-page.jsx";
 import Contact, { loader as contactLoader } from "./pages/contact.jsx";
 import EditContact, { action as editAction } from "./pages/edit.jsx";
+import { action as destroyAction } from "./pages/destroy.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
 				element: <EditContact />,
 				loader: contactLoader,
 				action: editAction
+			},
+			{
+				path: "contacts/:contactId/destroy",
+				action: destroyAction,
 			},
 		],
 	},
