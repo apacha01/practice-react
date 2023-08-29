@@ -79,7 +79,15 @@ export default function Contact() {
 function Favorite({ contact }) {
 	const fetcher = useFetcher();
 	let favorite = contact.favorite;
-	console.log(favorite)
+
+	// Optimistic ui
+	// The fetcher knows the form data being submitted to the action, 
+	// so it's available to you on fetcher.formData. Use that to immediately update 
+	// the star's state, even though the network hasn't finished.
+	// Note: This is for pages w/latency since i'm using mocks it's the same
+	if (fetcher.formData) {
+		favorite = fetcher.formData.get("favorite") === "true";
+	}
 
 	return (
 		<fetcher.Form method="post">
