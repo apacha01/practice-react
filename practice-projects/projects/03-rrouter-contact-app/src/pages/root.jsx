@@ -83,7 +83,7 @@ export default function Root() {
 										}
 										{" "}
 										{
-											contact.favorite === "true"
+											contact.favorite
 												? <span>★</span>
 												: null
 										}

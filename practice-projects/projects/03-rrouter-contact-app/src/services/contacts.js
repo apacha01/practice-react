@@ -51,5 +51,6 @@ export async function deleteContact(id) {
 }
 
 async function set(contacts) {
+	console.log(JSON.stringify(contacts))
 	return window.localStorage.setItem("contacts", JSON.stringify(contacts));
 }

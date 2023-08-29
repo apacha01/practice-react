@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root, { loader as rootLoader, action as rootAction } from "./pages/root.jsx";
+import Root, { loader as rootLoader, action as rootAction, action } from "./pages/root.jsx";
 import ErrorPage from "./pages/error-page.jsx";
-import Contact, { loader as contactLoader } from "./pages/contact.jsx";
+import Contact, { loader as contactLoader, action as contactAction } from "./pages/contact.jsx";
 import EditContact, { action as editAction } from "./pages/edit.jsx";
 import { action as destroyAction } from "./pages/destroy.jsx";
 import Index from "./pages/index.jsx";
@@ -20,7 +20,8 @@ const router = createBrowserRouter([
 			{
 				path: "contacts/:contactId",
 				element: <Contact />,
-				loader: contactLoader
+				loader: contactLoader,
+				action: contactAction
 			},
 			{
 				path: "contacts/:contactId/edit",

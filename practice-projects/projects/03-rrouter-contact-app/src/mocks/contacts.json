@@ -7,7 +7,7 @@
 			"avatar": "https://randomuser.me/api/portraits/thumb/men/99.jpg",
 			"twitter": "zachary.chan@example.com",
 			"phone": "C76 O64-0066",
-			"favorite": "true"
+			"favorite": true
 		},
 		{
 			"id": "007662515",
@@ -16,7 +16,7 @@
 			"avatar": "https://randomuser.me/api/portraits/thumb/women/46.jpg",
 			"twitter": "yvonne.dean@example.com",
 			"phone": "00-8424-5532",
-			"favorite": "false"
+			"favorite": false
 		},
 		{
 			"id": "NaNNA865undefined",
@@ -25,7 +25,7 @@
 			"avatar": "https://randomuser.me/api/portraits/thumb/men/69.jpg",
 			"twitter": "leo.rautio@example.com",
 			"phone": "07-777-587",
-			"favorite": "true"
+			"favorite": true
 		},
 		{
 			"id": "129.071.687-23",
@@ -34,7 +34,7 @@
 			"avatar": "https://randomuser.me/api/portraits/thumb/men/61.jpg",
 			"twitter": "goncalo.martins@example.com",
 			"phone": "(23) 6480-7358",
-			"favorite": "true"
+			"favorite": true
 		},
 		{
 			"id": "888914777",
@@ -43,7 +43,7 @@
 			"avatar": "https://randomuser.me/api/portraits/thumb/men/34.jpg",
 			"twitter": "arnaud.ouellet@example.com",
 			"phone": "Z13 D58-3217",
-			"favorite": "false"
+			"favorite": false
 		},
 		{
 			"id": "NT 25 13 86 M",
@@ -52,7 +52,7 @@
 			"avatar": "https://randomuser.me/api/portraits/thumb/women/64.jpg",
 			"twitter": "linda.macrae@example.com",
 			"phone": "015396 26185",
-			"favorite": "false"
+			"favorite": false
 		},
 		{
 			"id": "32573654",
@@ -61,7 +61,7 @@
 			"avatar": "https://randomuser.me/api/portraits/thumb/men/1.jpg",
 			"twitter": "avtonom.bodnya@example.com",
 			"phone": "(099) S61-9797",
-			"favorite": "true"
+			"favorite": true
 		},
 		{
 			"id": "asfgvfsd",
@@ -70,7 +70,7 @@
 			"avatar": "https://randomuser.me/api/portraits/thumb/women/63.jpg",
 			"twitter": "ayse.tasli@example.com",
 			"phone": "(226)-792-8444",
-			"favorite": "false"
+			"favorite": false
 		},
 		{
 			"id": "0987654",
@@ -79,7 +79,7 @@
 			"avatar": "https://randomuser.me/api/portraits/thumb/women/12.jpg",
 			"twitter": "vlasta.dem'yanyuk@example.com",
 			"phone": "(097) Z63-8971",
-			"favorite": "false"
+			"favorite": false
 		},
 		{
 			"id": "12345gfd",
@@ -88,7 +88,7 @@
 			"avatar": "https://randomuser.me/api/portraits/thumb/men/97.jpg",
 			"twitter": "okan.kumcuoglu@example.com",
 			"phone": "(201)-992-0680",
-			"favorite": "true"
+			"favorite": true
 		}
 	]
 }
