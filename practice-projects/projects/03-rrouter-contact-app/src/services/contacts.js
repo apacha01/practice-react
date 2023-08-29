@@ -8,8 +8,8 @@ export async function getContacts(query) {
 	}
 	if (query?.length > 0) {
 		return contacts.filter(c =>
-			c.first.toLowerCase().includes(query.toLowerCase())
-			|| c.last.toLowerCase().includes(query.toLowerCase())
+			c.first.toLowerCase().startsWith(query.toLowerCase())
+			|| c.last.toLowerCase().startsWith(query.toLowerCase())
 		);
 	}
 	return extractContacts();
