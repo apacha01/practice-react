@@ -2,9 +2,15 @@ import { contacts } from '../mocks/contacts.json'
 
 function extractContacts() { return JSON.parse(window.localStorage.getItem("contacts")); }
 
-export async function getContacts() {
+export async function getContacts(query) {
 	if (!window.localStorage.getItem('contacts')) {
 		window.localStorage.setItem("contacts", JSON.stringify(contacts));
+	}
+	if (query?.length > 0) {
+		return contacts.filter(c =>
+			c.first.toLowerCase().includes(query.toLowerCase())
+			|| c.last.toLowerCase().includes(query.toLowerCase())
+		);
 	}
 	return extractContacts();
 }
