@@ -46,12 +46,12 @@ Full feature list: `https://vitejs.dev/guide/features.html`
 	* **CSS Pre-processors:** Vite provides built-in support for `.scss`, `.sass`, `.less`, `.styl` and `.stylus` files (although Vite targets modern browsers only, so it's recommended to use native CSS variables with PostCSS plugins).
 * Static Assest
 	* Importing a static asset will return the resolved public URL. For exapmle:
-		```
+		```js
 		import imgUrl from './img.png'
 		document.getElementById('img').src = imgUrl
 		```
 	* Special queries can modify how assets are loaded:
-		```
+		```js
 		// Load assets as strings
 		import assetAsString from './shader.glsl?raw'
 		```
@@ -69,7 +69,7 @@ JSX is a **syntax extension for JavaScript** that lets you write HTML-like marku
 
 ### Creating Components
 React components are JavaScript functions that return markup.  A component name must always start with a capital letter (unlike HTML tags which must be lowercase):
-```
+```js
 function MyButton() {
   return (
     <button>I'm a button</button>
@@ -78,7 +78,7 @@ function MyButton() {
 ```
 ##### Nesting Components
 
-```
+```js
 function MyApp() {
 	return (
 		<div>
@@ -90,7 +90,7 @@ function MyApp() {
 ```
 ##### A *main* component
 The `export default` keywords specify the main component in the file:
-```
+```js
 export default function MyApp() {
 	// Code
 }
@@ -98,7 +98,7 @@ export default function MyApp() {
 
 ### Responding to events
 Declare the event handler functions inside your components and use curly brackets to assign it to the event:
-```
+```js
 // Replacing 'Event' for the actual event (e.g. click)
 function myComponent() {
 	function handleEvent(){...}
@@ -113,12 +113,12 @@ Hooks are more restrictive than other functions. They can only be called at the 
 
 ### Updating the screen
 To make a component *remember* some information and display it, add a **state** to it. To do this a **Hook** is used to get access to two things: the current state and the function to update that state.
-```
+```js
 import {useState from 'react'}
 const [state, stateUpdate] = useSate(initalState) // This has to go inside the component
 ``` 
 A full example of a button that counts the clicks:
-```
+```js
 function MyButton() {
 	const [count, setCount] = useState(0);
 	function handleClick() {
@@ -136,7 +136,7 @@ This state is independent for each component, so multiple renders of the same co
 ###  Sharing data between components
 If there's a need to share data and always update multiple components together, the solution is to move the state from the individual components *upwards* to the closest component containing all of them.
 Following the example in **Updating the screen**:
-```
+```js
 function MyApp() {
 	const [count, setCount] = useState(0);
 	function handleClick() {
@@ -161,7 +161,7 @@ The information passed down like this is called **props**. **Props are immutable
 
 ### Default props
 React offers a way called `defaultProps`. This is a property in a component used to set default values for the `props` argument. It will be changed if the prop property is passed.
-```
+```js
 // ES6 class
 Component.defaultProps = {name: 'Jhon', lastName: 'Doe'}
 // or as a static property inside the class
@@ -173,7 +173,7 @@ class Component extends React.Component {
 Component.defaultProps = {name: 'Jhon', lastName: 'Doe'}
 ```
 Although (as per Dan Abramov, one of the core team) it seems it will be deprecated: `https://twitter.com/dan_abramov/status/1133878326358171650`. So using default parameters in Function Components seems the better alternative:
-```
+```js
 function Component ({ name = 'Jhon', lastName: 'Doe' }) {...}
 ```
 
@@ -225,7 +225,7 @@ React does not prescribe how you add CSS files (so use a simple link tag in html
 
 ### Displaying data
 JSX lets you put markup into JavaScript. Curly braces let you *escape back* into JS, so, just like in string literals, you can use variables and such. This can be done from within a JSX tag or even inside JSX attributes.
-```
+```js
 function Profile(){
 	return (
 		<>
@@ -247,19 +247,19 @@ function Profile(){
 
 ### Conditional rendering
 There's no special syntax for React, so just use the JS syntax in combination with JSX tags.
-```
+```js
 let content;
 if (isLoggedIn)	content = <AdminPanel />;
 else content = <LoginForm />;
 ```
 For a more compact code use the ternary (`?:`) operator which works inside JSX:
-```
+```jsx
 <div>
 	{isLoggedIn ? (<AdminPanel />) : (<LoginForm />)}
 </div>
 ```
 And if the `else` branch is unnecessary, a shorter logical syntax (`&&`) can be used:
-```
+```jsx
 <div>
 	{isLoggedIn && <AdminPanel />}
 </div>
@@ -268,7 +268,7 @@ And if the `else` branch is unnecessary, a shorter logical syntax (`&&`) can be 
 ### Rendering lists
 There's no feature in React for rendering lists, so it relies on JS `for` loops and `.map()` functions.
 The idea is to use a loop to get a list of tags (e.g. `<li>...<li/>` tags) and store that value. Then, it can be used within JSX with the `{}` syntax.
-```
+```jsx
 const listItems = products.map(product =>
 	<li key={product.id}>
 		{product.title}
@@ -288,7 +288,7 @@ Each child in a list should have a unique *key* prop, a string or a number that 
 ## Elements
 ### What is an Element?
 Whenever a **React Component** gets called (rendering, i.e. using `<></>`), React calls its `React.createElement()` method internally which returns the following object:
-```
+```jsx
 const App = () => {
 	return <p className="classInProps" >Hello React</p>;
 };
@@ -306,7 +306,7 @@ const App = () => {
 }
 ```
 Note that React treats `children` as pseudo HTML attribute that represents everything between the HTML tag (the content).  The `type` represents the actual HTML element, while the `props` are all HTML attributes plus the inner content (as `children` property). So, essentially, it could be translated as (not recommended):
-```
+```jsx
 const App = () => {
 	// return <p className="danger">Hello React</p>;
 	return React.createElement(
@@ -317,7 +317,7 @@ const App = () => {
 };
 ``` 
 It's possible to provide the HTML tag as first argument, the props as second argument, and the children as third argument or, since children are treated as props, it could also be passed in the second argument:
-```
+```jsx
 const App = () => {
 	// return <p className="danger">Hello React</p>;
 	return React.createElement(
@@ -332,13 +332,13 @@ const App = () => {
 
 ### Element vs Component vs Instances
 A **React Component** is literally the declaration of a component, like the following:
-```
+```jsx
 const Greeting = ({ text }) => {
 	return <p>{text}</p>;
 };
 ```
 A **React Element** is when a component is rendered using the angle brackets syntax (`<>...</>`), like the following:
-```
+```jsx
 // Component
 const Greeting = ({ text }) => {
 	return <p>{text}</p>;
@@ -349,7 +349,7 @@ const App = () => {
 };
 ``` 
 A component can be rendered as **React Element** multiple times. Whenever a component gets rendered as element, we create an **Instance of this Component**.
-```
+```jsx
 const Greeting = ({ text }) => {
 	return <p>{text}</p>;
 };
@@ -389,7 +389,7 @@ List of built-in Hooks: `https://react.dev/reference/react`.
 Custom Hooks are a good way to **reuse logic between components**. One can write a custom hooks with a certain logic and reuse it across components.
 Extracting logic into hooks also allows to the code inside the components to describe what they want to do rather than how to do it (more declarative).
 Consider the following example where we want to know whether a user is online or offline. One may want to know this to disable buttons or some other input, instead of repeating code to find out if the user is connected, it's possible to create a `useOnlineStatus` custom hook:
-```
+```js
 function useOnlineStatus() {
 	const [isOnline, setIsOnline] = useState(true);
 	useEffect(() => {
@@ -414,7 +414,7 @@ This convention guarantees that you can always look at a component and know wher
 #### Custom Hooks share stateful logic, not state itself
 When extracting logic into a custom hook, like in the example above (`useOnlineStatus`), each value is independent from each other. In that example, it's synchronized because the same external value is used to set the return value and there are no dependencies.
 However, a simple hook like `useBoolean` that looks like
-```
+```js
 const useBoolean = (initVal) => {
 	const [state, setState] = useState(initVal);
 	const handleTrue = () => setState(true);
@@ -461,7 +461,7 @@ But there's also the option to use a function instead of a component (e.g. `crea
 
 ### Route Component
 Routes are objects passed to the router creation functions. They couple URL segments to components, data loading and data mutations.
-```
+```jsx
 {
 	// it renders this element
 	element: <TeamList />,
@@ -487,14 +487,14 @@ In case the components are used, the props to the element are identical to the p
 
 #### Dynamic Paths
 Within a `<Route>` component the path uses a special syntax for dynamic segments in the path, the `:` (colon). 
-```
+```jsx
 // code
 <Route path: "/teams/:teamId" element{<Team />} />
 // more code
 ```
 When using dynamic segments, inside the component rendered by the `<Route>`, there's a special hook to retrieve this parameters in the path: `useParams()`.
 The `useParams` hook returns an object of key / value pairs of the dynamic params from the current URL that were matched by the `<Route path>`. Child routes inherit *all* params from their parent routes.
-```
+```js
 function Team () {
 	const { teamId } = useParams();
 }
@@ -517,7 +517,7 @@ Also known as *catchall* and *star* segments. If a route path pattern ends with 
 Rendered anywhere in the app, `<Routes>` will match a set of child routes from the current location. Whenever the location changes, `<Routes>` looks through all its child routes to find the best match and renders that branch of the UI.
 Previously, a `<Switch>` component existed that went downwards to select a route, but `<Routes>` doesn't do that, it does NOT go top to bottom but rather ranks the routes according to the number of segments, static segments, dynamic segments, splats, etc. and picks the most specific match.
 For example:
-```
+```jsx
 <Route path="/teams/:teamId" />
 <Route path="/teams/new" />
 ```
@@ -535,7 +535,7 @@ To redirect to a certain path one needs to specify the `to` prop with the path t
 * A relative value (that does not begin with `/`): resolves relative to the parent route.
 * `..`: links to routes further up the hierarchy.
 * Relative to: it's possible to specify whether a route is relative to another route or a  path (`relative="route"` or `relative="path"`). e.g.
-	```
+	```jsx
 	<Route path="/" element={...}>
 	  <Route path="contacts/:id" element={...} />
 	  <Route path="contacts/:id/edit" element={...} />
@@ -553,7 +553,7 @@ A `<Navigate>` element changes the current location when it is rendered. It's us
 
 ### Outlet Component
 An `<Outlet>` should be used in parent route elements to render their child route elements, this allows nested UI. If the parent route matched exactly, it will render a child index route or nothing if there is no index route.
-```
+```jsx
 function Dashboard() {
 	return (
 		<div>
@@ -582,6 +582,55 @@ function App() {
 ### A "problem" with client-side routing
 When using **React Router** for client-side routing in your SPA, URL routes *may* not work when a page is refreshed, the URL is written manually, or when the URL is shared. This issue may be due to the browser making a GET request to the server for a route that is not handled on it. There's client-side routing set up, but not a server-side routing set up.
 This blog discusses some possible solutions: `https://sentry.io/answers/why-don-t-react-router-urls-work-when-refreshing-or-writing-manually/`.
+
+## State Management
+An app **state management is the process of maintaining knowledge of an application’s inputs across multiple related data flows** that form a complete business transaction, or a session, to understand the condition of the app at any given moment.
+[There are multiple ways to manage states in an app, but i'll only go into detail with zustand, the one i'll be studying / using.]
+
+### How it works?
+State management makes the state of an app visible in the form of a data structure, improving developers ability to work with the app.
+There are two accepted models for state management: 
+* Front end: client side.
+* Back end: server side.
+
+### How to implement / use it?
+The top 3 options are:
+
+#### Context
+The built-in method is using the `useContext` hook. Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+
+#### Redux Toolkit
+**Redux Toolkit** (RTK) is a library for managing state in JavaScript applications. RTK is often used as an alternative to writing Redux applications from scratch, as it provides a set of conventions and utilities that can make it easier and faster to build Redux applications.
+
+#### Zustand
+Zustand is a small, fast and scalable bear-bones state-management solution. It has an **API based on hooks**, isn’t boilerplatey or opinionated [so, made to be used with React, unlike Redux].
+
+##### How to use it?
+1. Create a store: *store is a hook* that can have anything in it: primitives, objects, functions. The `set` function merges state.
+	```js
+	import { create } from 'zustand'
+
+	const useStore = create((set, get) => ({
+		bears: 0,
+		increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
+		removeAllBears: () => set({ bears: 0 }),
+	}))
+	```
+	*Note:* the `set` function merges state at one level by default.  If there's nested objects, merge them explicitly. To disable the merging behavior, you can specify a replace boolean value for `set`: `set((state) => newState, true)`.
+
+2. Bind with a component: the *hook can be used anywhere, without the need of providers*.
+	 ```jsx
+	function BearCounter() {
+		const bears = useStore((state) => state.bears)
+		const increasePopulation = useStore((state) => state.increasePopulation)
+		return (
+			<>
+				<h1>{bears} around here...</h1>
+				<button onClick={increasePopulation}>one up</button>
+			</>
+		)
+	}
+	```
 
 
 Helpful links:
