@@ -4,16 +4,16 @@ function Header () {
 			<h2 className="font-bold text-3xl flex-1">CRYPTOPACHA</h2>
 			<nav className="flex-1 h-full">
 				<ul className="flex justify-around items-center">
-					<li className="">
+					<li className="hover:underline underline-offset-4">
 						<a href="#home" className="">Home</a>
 					</li>
-					<li className="">
+					<li className="hover:underline underline-offset-4">
 						<a href="#markets" className="">Markets</a>
 					</li>
-					<li className="">
+					<li className="hover:underline underline-offset-4">
 						<a href="#about" className="">About Us</a>
 					</li>
-					<li className="">
+					<li className="hover:underline underline-offset-4">
 						<a href="#socials" className="">Follow Us</a>
 					</li>
 				</ul>
