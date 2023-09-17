@@ -1,11 +1,13 @@
 import Header from './components/Header';
 import Hero from './components/Hero';
+import Market from './components/Market';
 
 function App() {
 	return (
 		<>
 			<Header />
 			<Hero />
+			<Market />
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo nisi dolor dignissimos. Eos, nisi facere laudantium cumque rerum provident quia ipsa voluptate omnis, dolorum rem tempora necessitatibus id praesentium aperiam.
 			Illo voluptatem sed veniam, unde maiores officia est beatae dolore quidem? Inventore iure reiciendis minus modi nobis provident voluptatibus quae cumque perspiciatis. Aut possimus excepturi quis atque quibusdam tenetur fuga?
 			Accusamus magnam laudantium nulla temporibus dolore. Ipsam commodi sapiente neque ullam hic. Quod illum molestias rem aliquam est quibusdam consequatur tempora illo blanditiis doloribus aspernatur laudantium, dolor fugiat. Nobis, magnam.
