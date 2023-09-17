@@ -1,6 +1,6 @@
 function Hero () {
 	return (
-		<section id="home" className="bg-gradient-to-b from-sky-950 via-dark-purple to-dark-purple">
+		<section id="home" className="pt-20 bg-gradient-to-b from-sky-950 via-dark-purple to-dark-purple">
 			<div className="py-8 px-4 mx-auto text-center lg:py-16 lg:px-12">
 				<h1 className="mb-4 text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-6xl">
 					Invest in the <span className="bg-clip-text text-transparent bg-gradient-to-b from-pink-800 to-own-pink">biggest</span> crypto exchange in the market

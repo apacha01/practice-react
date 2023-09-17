@@ -14,8 +14,8 @@ function Market () {
 					key={i}
 					onClick={() => setCurrentPage(i)}
 					className={
-						'text-center aspect-square h-8 border-2 border-white text-white rounded-full '+
-						(i === currentPage ? 'border-own-pink' : '')
+						'text-center aspect-square h-8 border-2 text-white rounded-full' +
+						(i === currentPage ? ' border-own-pink' : ' border-white')
 					}
 				>
 					{i}
@@ -37,7 +37,7 @@ function Market () {
 		<section id="markets" className="pt-28 w-full bg-dark-purple text-white flex flex-col items-center">
 			<h2 className="text-5xl mb-5">Markets</h2>
 			<table className="relative w-4/5 text-sm text-left px-4 overflow-x-auto">
-				<thead className="text-xs uppercase bg-gradient-to-bl from-light-purple to-own-pink">
+				<thead className="text-sm uppercase bg-gradient-to-bl from-light-purple to-own-pink">
 					<tr>
 						<th className="px-3 py-2">Coin</th>
 						<th className="px-3 py-2">Price</th>
