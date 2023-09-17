@@ -1,9 +1,9 @@
 function Header () {
 	return (
-		<header className="w-full bg-purple-800 text-white flex justify-between items-center p-6">
-			<h2 className="font-bold text-3xl flex-1">CRYPTOPACHA</h2>
+		<header className="max-w-full bg-purple-800 text-white box-border md:flex justify-between items-center py-4 px-6">
+			<h2 className="font-bold text-3xl flex-1 mb-2 md:m-0">CRYPTOPACHA</h2>
 			<nav className="flex-1 h-full">
-				<ul className="flex justify-around items-center">
+				<ul className=" flex justify-between md:justify-around items-center">
 					<li className="hover:underline underline-offset-4">
 						<a href="#home" className="">Home</a>
 					</li>
@@ -18,7 +18,7 @@ function Header () {
 					</li>
 				</ul>
 			</nav>
-			<div className="flex-1 flex justify-center items-center gap-4">
+			<div className="flex-1 lg:flex justify-center items-center gap-4 hidden">
 				<a href="#" className="w-6 h-6">
 					{/* Twitter icon from tabler-icons.io */}
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
