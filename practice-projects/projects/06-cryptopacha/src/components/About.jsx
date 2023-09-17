@@ -1,6 +1,6 @@
 function About () {
 	return (
-		<section className="pt-28 w-full bg-dark-purple text-white flex flex-col items-center">
+		<section id="about" className="pt-28 w-full bg-dark-purple text-white flex flex-col items-center">
 			<h2 className="text-5xl mb-5" >About Us</h2>
 			<p className="w-3/4 text-gray-300">
 				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem fugit labore quod eos eius iusto repellendus sequi blanditiis impedit nisi debitis ut, nemo, aliquid eum corporis laboriosam dicta fugiat quis?
