@@ -1,6 +1,5 @@
 import { useState } from 'react';
-// import { getCoinsPaginated } from '../services/cryptos.js';
-import marketMock from '../mocks/marketTopTen.json';
+import { getCoinsPaginated, formatCoins } from '../services/cryptos.js';
 import { useEffect } from 'react';
 
 function Market () {
@@ -25,13 +24,13 @@ function Market () {
 		return pBtns;
 	})();
 
-	// useEffect(() => {
-	// 	const getData = async () => {
-	// 		const market = await getCoinsPaginated(5, currentPage);
-	// 		setData(market);
-	// 	};
-	// 	getData();
-	// }, [currentPage]);
+	useEffect(() => {
+		const getData = async () => {
+			const market = await getCoinsPaginated(10, currentPage);
+			setData(market);
+		};
+		getData();
+	}, [currentPage]);
 
 	return (
 		<section id="markets" className="pt-28 w-full bg-dark-purple text-white flex flex-col items-center">
@@ -47,14 +46,13 @@ function Market () {
 				</thead>
 				<tbody className="text-sm">
 					{
-						// TODO: data?.map
-						marketMock.map((c) =>
+						formatCoins(data)?.map((c) =>
 							(
 								<tr key={c.id} className="border-b">
 									<td className="px-3 py-2">{c.name}</td>
-									<td className="px-3 py-2">{c.current_price}</td>
-									<td className="px-3 py-2">{c.price_change_percentage_24h}</td>
-									<td className="px-3 py-2">{c.market_cap}</td>
+									<td className="px-3 py-2">{c.currentPrice}</td>
+									<td className="px-3 py-2">{c.priceChange24h}</td>
+									<td className="px-3 py-2">{c.marketCap}</td>
 								</tr>
 							)
 						)
