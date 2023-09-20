@@ -61,7 +61,7 @@ function Market () {
 					}
 				</tbody>
 			</table>
-			<div className="w-4/5 flex flex-nowrap justify-between items-center py-5">
+			<div className="w-4/5 flex flex-nowrap justify-center items-center gap-8 py-5">
 				{
 					paginationBtns.map(e =>
 						e
