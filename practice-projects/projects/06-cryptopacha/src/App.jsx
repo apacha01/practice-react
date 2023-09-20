@@ -1,18 +1,19 @@
-import About from './components/About';
-import Follow from './components/Follow';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import Market from './components/Market';
+import Home from './pages/Home';
+import Coin from './pages/Coin';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
 	return (
 		<>
 			<Header />
-			<Hero />
-			<Market />
-			<About />
-			<Follow />
+			<Routes>
+				<Route path="/cryptopacha/" element={<Home />} />
+				<Route path="/cryptopacha/coin" element={<Coin />}>
+					<Route path=":id" element={<Coin />}></Route>
+				</Route>
+			</Routes>
 			<Footer />
 		</>
 	);

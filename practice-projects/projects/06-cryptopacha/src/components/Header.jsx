@@ -1,7 +1,7 @@
 function Header () {
 	return (
 		<header className="z-50 sticky top-0 max-w-full bg-sky-950 text-white md:flex justify-between items-center py-4 px-6">
-			<h2 className="font-bold text-3xl flex-1 mb-2 md:m-0">CRYPTOPACHA</h2>
+			<a href="/" className="font-bold text-3xl flex-1 mb-2 md:m-0">CRYPTOPACHA</a>
 			<nav className="flex-1 h-full">
 				<ul className=" flex justify-between md:justify-around items-center">
 					<li className="hover:underline underline-offset-4">
