@@ -23,12 +23,16 @@ const formatCoins = (coins) => coins?.map(c =>
 		id: c.id,
 		name: c.name,
 		// Avoid inseting commas after decimal point
-		currentPrice: c.current_price.toString().indexOf('.') != -1
-			? c.current_price.toString().replace(/\d{1,3}(?=(\d{3})+(?=\.))/g, '$&,')
-			: c.current_price.toString().replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, '$&,'),
+		currentPrice: formatNumber(c.current_price),
 		priceChange24h: c.price_change_percentage_24h.toFixed(2) + '%',
-		marketCap: 	c.market_cap.toString().replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, '$&,')
+		marketCap: 	formatNumber(c.market_cap)
 	})
 );
 
-export { getCoinById, getCoinsPaginated, formatCoins };
+const formatNumber = (n) => {
+	return n.toString().indexOf('.') != -1
+		? n.toString().replace(/\d{1,3}(?=(\d{3})+(?=\.))/g, '$&,')
+		: n.toString().replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, '$&,');
+};
+
+export { getCoinById, getCoinsPaginated, formatCoins, formatNumber };
