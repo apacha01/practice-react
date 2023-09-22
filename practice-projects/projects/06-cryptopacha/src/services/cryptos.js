@@ -5,15 +5,27 @@ const PAGINATED_URL = (pp, p) => `markets?vs_currency=usd&order=market_cap_desc&
 const COIN_ID_URL = (id) => `${id}?tickers=false&community_data=false&developer_data=false`;
 
 const getCoinById = async (id) => {
-	const data = await fetch(COINGECKO_API_URL + COIN_ID_URL(id));
-	const json = data.json();
-	return json;
+	try {
+		const data = await fetch(COINGECKO_API_URL + COIN_ID_URL(id));
+		const json = data.json();
+		return json;
+	} catch (error) {
+		console.error(error);
+	}
+
+	return null;
 };
 
 const getCoinsPaginated = async (perpage, page) => {
-	const data = await fetch(COINGECKO_API_URL + PAGINATED_URL(perpage, page));
-	const json = await data.json();
-	return json;
+	try {
+		const data = await fetch(COINGECKO_API_URL + PAGINATED_URL(perpage, page));
+		const json = await data.json();
+		return json;
+	} catch (error) {
+		console.error(error);
+	}
+
+	return null;
 };
 
 

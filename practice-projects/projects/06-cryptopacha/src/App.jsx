@@ -9,10 +9,8 @@ function App() {
 		<>
 			<Header />
 			<Routes>
-				<Route path="/cryptopacha/" element={<Home />} />
-				<Route path="/cryptopacha/coin" element={<Coin />}>
-					<Route path=":id" element={<Coin />}></Route>
-				</Route>
+				<Route path="/" element={<Home />} />
+				<Route path=':coinId' element={<Coin />}/>
 			</Routes>
 			<Footer />
 		</>

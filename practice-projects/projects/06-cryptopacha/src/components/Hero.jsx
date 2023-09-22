@@ -8,7 +8,7 @@ function Hero () {
 				<p className="mb-8 text-lg font-normal text-gray-400 lg:text-xl sm:px-16 xl:px-48">
 					Invest and manage all your crypto at one place.
 				</p>
-				<a href="#markets" type="button" className="focus:outline-none text-white bg-own-pink/70 border-2 border-light-purple hover:border-own-pink font-medium rounded-lg text-sm px-5 py-2.5 mb-4">
+				<a href="#markets" type="button" className="focus:outline-none text-white bg-own-pink/70 border-2 hover:border-own-pink font-medium rounded-lg text-sm px-5 py-2.5 mb-4">
 					Start trading
 				</a>
 			</div>
