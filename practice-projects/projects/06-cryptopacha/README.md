@@ -1,8 +1,4 @@
-# React + Vite
+# CRYPTOPACHA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A simple web page that consumes the coingecko api to show the prices of the top ten cryptos with pagination up to top 50.
+Also, clicking on the line of the cryto takes you to it's custom page where you have a little bit more info.

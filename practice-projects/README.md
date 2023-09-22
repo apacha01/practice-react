@@ -10,3 +10,4 @@ A monorepo multi-package repository with all the repos i made to practice React.
 | 03 | Contact App | [code](projects/03-rreact-contact-app/) | not deployed yet |
 | 04 | Counter | [code](projects/04-zustand-counter/) | not deployed yet |
 | 05 | Movies & Series | [code](projects/05-chedoc-movies/) | not deployed yet |
+| 06 | Website for checking cryptos | [code](projects/06-cryptopacha/) | not deployed yet |
