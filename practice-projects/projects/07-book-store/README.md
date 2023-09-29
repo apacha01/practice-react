@@ -5,7 +5,7 @@ The instructions can be found in the [README.INSTRUCTIONS.md](./README.INSTRUCTI
 
 # Requirements
 
-- [ ] **Visualizing available books**: App must show a list of available books that the user can check.
+- [x] **Visualizing available books**: App must show a list of available books that the user can check.
 
 - [ ] **Create a reading list**: User should be capable of creating a reading list from the available books. Within the UI it must be clear which books are in this list and which aren't. It should also be possible to move a book from reading list to available list.
 
