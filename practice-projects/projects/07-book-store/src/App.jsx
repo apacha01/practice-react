@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import './app.css';
 import { getAllBooks } from './services/books';
+import Book from './components/Book';
 
 function App() {
 	const [availableBooks, setAvailableBooks] = useState(null);
@@ -10,11 +10,7 @@ function App() {
 			const books = await getAllBooks();
 			return books.map(e => {
 				return (
-					<div key={e.isbn} className="book">
-						{e.title} {e.year}
-						<img src={e.cover} alt={'Cover of the book:' + e.title} />
-						{e.author.name}
-					</div>
+					<Book key={e.isbn} {...e} />
 				);
 			}
 			);
@@ -26,10 +22,8 @@ function App() {
 	return (
 		<>
 			<h1>Reading List</h1>
-			<main className="available-books">
-				{
-					availableBooks
-				}
+			<main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+				{availableBooks}
 			</main>
 		</>
 	);
