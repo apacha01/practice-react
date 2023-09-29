@@ -1,6 +1,6 @@
-function Book({ title, author, cover, isbn, genre, pages, synopsis, year }) {
+function Book({ title, author, cover, isbn, genre, pages, synopsis, year, onClick }) {
 	return (
-		<div className="flex flex-col my-6 max-w-xs p-2 gap-2 border-black">
+		<div onClick={onClick} className="flex flex-col my-6 max-w-xs p-2 gap-2 border-black">
 			<div className="flex justify-between">
 				<h2 className="font-bold">{title}</h2>
 			</div>

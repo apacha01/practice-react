@@ -15,5 +15,4 @@ const getAllBooks = async () => {
 	});
 };
 
-
 export { getAllBooks };

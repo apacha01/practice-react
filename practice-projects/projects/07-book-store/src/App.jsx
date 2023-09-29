@@ -1,24 +1,10 @@
-import { useEffect, useState } from 'react';
-import { getAllBooks } from './services/books';
+import { useState } from 'react';
 import Book from './components/Book';
+import useBooks from './hooks/useBooks';
 
 function App() {
-	const [availableBooks, setAvailableBooks] = useState(null);
+	const { availableBooks, readingBooks, addToReadingList, removeFromReadingList } = useBooks();
 	const [toggleReadingList, setToggleReadingList] = useState(false);
-
-	useEffect(() => {
-		const renderBooks = async () => {
-			const books = await getAllBooks();
-			return books.map(e => {
-				return (
-					<Book key={e.isbn} {...e} />
-				);
-			}
-			);
-		};
-
-		renderBooks().then(res => setAvailableBooks(res));
-	}, []);
 
 	return (
 		<div className='relative'>
@@ -55,12 +41,21 @@ function App() {
 
 				</button>
 			</div>
-			<main className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-				{availableBooks}
+			<main className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 px-10">
+				{
+					availableBooks?.map(b => {
+						return <Book onClick={() => addToReadingList(b)} key={b.isbn} {...b} />;
+					})
+				}
 			</main>
-			<aside className={`absolute top-0 right-0 w-96 bg-black h-full ${toggleReadingList ? '' : 'hidden'}`}>
+			<aside className={`absolute top-0 right-0 w-96 px-8 pt-4 bg-black h-full overflow-y-scroll ${toggleReadingList ? '' : 'hidden'}`}>
+				{
+					readingBooks?.map(b => {
+						return <Book onClick={() => removeFromReadingList(b)} key={b.isbn} {...b} />;
+					})
+				}
 			</aside>
-		</div >
+		</div>
 	);
 }
 
