@@ -41,17 +41,17 @@ function App() {
 
 				</button>
 			</div>
-			<main className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 px-10">
+			<main className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 px-10 gap-8">
 				{
 					availableBooks?.map(b => {
 						return <Book onClick={() => addToReadingList(b)} key={b.isbn} {...b} />;
 					})
 				}
 			</main>
-			<aside className={`absolute top-0 right-0 w-96 px-8 pt-4 bg-black h-full overflow-y-scroll ${toggleReadingList ? '' : 'hidden'}`}>
+			<aside className={`absolute top-0 right-0 w-96 px-12 pt-10 bg-black h-full overflow-y-scroll ${toggleReadingList ? '' : 'hidden'}`}>
 				{
 					readingBooks?.map(b => {
-						return <Book onClick={() => removeFromReadingList(b)} key={b.isbn} {...b} />;
+						return <Book onClick={() => removeFromReadingList(b)} key={b.isbn} {...b} reading={true} />;
 					})
 				}
 			</aside>

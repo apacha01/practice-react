@@ -24,7 +24,7 @@ const useBooks = () => {
 		}
 		else {
 			setAvailableBooks(JSON.parse(storedAvailable));
-			setReadingBooks(JSON.parse(storedReading) || []);
+			setReadingBooks(JSON.parse(storedReading));
 		}
 	}, [setAvailableBooks, setReadingBooks]);
 
