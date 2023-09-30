@@ -7,7 +7,7 @@ The instructions can be found in the [README.INSTRUCTIONS.md](./README.INSTRUCTI
 
 - [x] **Visualizing available books**: App must show a list of available books that the user can check.
 
-- [ ] **Create a reading list**: User should be capable of creating a reading list from the available books. Within the UI it must be clear which books are in this list and which aren't. It should also be possible to move a book from reading list to available list.
+- [x] **Create a reading list**: User should be capable of creating a reading list from the available books. Within the UI it must be clear which books are in this list and which aren't. It should also be possible to move a book from reading list to available list.
 
 - [ ] **Genre filter**: Users should be able to filter the list of available books by genre, and it has to have a counter with the number of available book, the number of reading list books and the number of books available in the selected genre.
 
