@@ -10,8 +10,8 @@ function App() {
 	const filteredBooks = availableBooks.filter(b => !filterByGenre.localeCompare(b.genre.toLowerCase().replace(' ', '-')) || filterByGenre === 'all');
 
 	return (
-		<div className='relative'>
-			<div className="flex justify-between px-4 py-6">
+		<div className='relative min-h-screen px-8'>
+			<div className="flex justify-between py-6">
 				<h1 className='text-center font-bold text-6xl'>Reading List</h1>
 				<button className={`z-50 ${toggleReadingList ? 'text-white' : ''}`} onClick={() => setToggleReadingList(t => !t)}>
 					{
@@ -44,7 +44,7 @@ function App() {
 
 				</button>
 			</div>
-			<div className="flex my-6 px-4">
+			<div className="flex my-6 gap-4">
 				<select name="filters" onChange={(e) => setFilterByGenre(e.target.value)}>
 					<option value="all">All</option>
 					{
@@ -53,15 +53,17 @@ function App() {
 						})
 					}
 				</select>
+				<strong className='rounded-full p-4 bg-blue-400 text-white aspect-square'>{filteredBooks.length}</strong>
 			</div>
-			<main className="m-auto grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] px-10 gap-8">
+			<main className="m-auto grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8">
 				{
 					filteredBooks?.map(b => {
 						return <Book onClick={() => addToReadingList(b)} key={b.isbn} {...b} />;
 					})
 				}
 			</main>
-			<aside className={`absolute top-0 right-0 w-96 px-12 pt-20 bg-black h-full overflow-y-scroll ${toggleReadingList ? '' : 'hidden'}`}>
+			<aside className={`flex flex-col gap-4 absolute top-0 right-0 w-96 px-12 pt-20 bg-black h-full overflow-y-scroll ${toggleReadingList ? '' : 'hidden'}`}>
+				<strong className='rounded-full p-2 bg-red-400 text-white aspect-square m-auto text-center'>{readingBooks.length}</strong>
 				{
 					readingBooks?.map(b => {
 						return <Book onClick={() => removeFromReadingList(b)} key={b.isbn} {...b} reading={true} />;
