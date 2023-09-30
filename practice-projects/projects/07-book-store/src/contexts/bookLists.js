@@ -10,9 +10,15 @@ const useBookLists = create((set) => ({
 		let newAvailableList = state.availableList;
 		newAvailableList.splice(index, 1);
 
+		let newReadingList = [...state.readingList];
+		newReadingList.push(book);
+
+		localStorage.setItem('available-list', JSON.stringify(newAvailableList));
+		localStorage.setItem('reading-list', JSON.stringify(newReadingList));
+
 		return {
 			availableList: newAvailableList,
-			readingList: [...state.readingList, book]
+			readingList: newReadingList
 		};
 	}),
 	removeBookFromReadingList: (book) => set(state => {
@@ -20,8 +26,14 @@ const useBookLists = create((set) => ({
 		let newReadingList = state.readingList;
 		newReadingList.splice(index, 1);
 
+		let newAvailableList = [...state.availableList];
+		newAvailableList.push(book);
+
+		localStorage.setItem('available-list', JSON.stringify(newAvailableList));
+		localStorage.setItem('reading-list', JSON.stringify(newReadingList));
+
 		return {
-			availableList: [...state.availableList, book],
+			availableList: newAvailableList,
 			readingList: newReadingList
 		};
 	})

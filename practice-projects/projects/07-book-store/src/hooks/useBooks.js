@@ -26,21 +26,9 @@ const useBooks = () => {
 			setAvailableBooks(JSON.parse(storedAvailable));
 			setReadingBooks(JSON.parse(storedReading));
 		}
-	}, [setAvailableBooks, setReadingBooks]);
+	}, []);
 
-	const addToReadingList = (book) => {
-		addBookToReadingList(book);
-		localStorage.setItem('available-list', JSON.stringify(availableBooks));
-		localStorage.setItem('reading-list', JSON.stringify(readingBooks));
-	};
-
-	const removeFromReadingList = (book) => {
-		removeBookFromReadingList(book);
-		localStorage.setItem('available-list', JSON.stringify(availableBooks));
-		localStorage.setItem('reading-list', JSON.stringify(readingBooks));
-	};
-
-	return { availableBooks, readingBooks, addToReadingList, removeFromReadingList };
+	return { availableBooks, readingBooks, addToReadingList: addBookToReadingList, removeFromReadingList: removeBookFromReadingList };
 };
 
 export default useBooks;

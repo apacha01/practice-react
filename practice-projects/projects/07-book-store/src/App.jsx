@@ -48,7 +48,7 @@ function App() {
 					})
 				}
 			</main>
-			<aside className={`absolute top-0 right-0 w-96 px-12 pt-10 bg-black h-full overflow-y-scroll ${toggleReadingList ? '' : 'hidden'}`}>
+			<aside className={`absolute top-0 right-0 w-96 px-12 pt-20 bg-black h-full overflow-y-scroll ${toggleReadingList ? '' : 'hidden'}`}>
 				{
 					readingBooks?.map(b => {
 						return <Book onClick={() => removeFromReadingList(b)} key={b.isbn} {...b} reading={true} />;
