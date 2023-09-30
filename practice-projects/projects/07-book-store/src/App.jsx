@@ -41,7 +41,7 @@ function App() {
 
 				</button>
 			</div>
-			<main className="m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 px-10 gap-8">
+			<main className="m-auto grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] px-10 gap-8">
 				{
 					availableBooks?.map(b => {
 						return <Book onClick={() => addToReadingList(b)} key={b.isbn} {...b} />;
