@@ -5,6 +5,9 @@ import useBooks from './hooks/useBooks';
 function App() {
 	const { availableBooks, readingBooks, addToReadingList, removeFromReadingList } = useBooks();
 	const [toggleReadingList, setToggleReadingList] = useState(false);
+	const [filterByGenre, setFilterByGenre] = useState('all');
+
+	const filteredBooks = availableBooks.filter(b => !filterByGenre.localeCompare(b.genre.toLowerCase().replace(' ', '-')) || filterByGenre === 'all');
 
 	return (
 		<div className='relative'>
@@ -41,9 +44,19 @@ function App() {
 
 				</button>
 			</div>
+			<div className="flex my-6 px-4">
+				<select name="filters" onChange={(e) => setFilterByGenre(e.target.value)}>
+					<option value="all">All</option>
+					{
+						Array.from(new Set(availableBooks.map(b => b.genre))).map((g, i) => {
+							return <option key={i} value={g.toLowerCase().replace(' ', '-')}>{g}</option>;
+						})
+					}
+				</select>
+			</div>
 			<main className="m-auto grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] px-10 gap-8">
 				{
-					availableBooks?.map(b => {
+					filteredBooks?.map(b => {
 						return <Book onClick={() => addToReadingList(b)} key={b.isbn} {...b} />;
 					})
 				}
