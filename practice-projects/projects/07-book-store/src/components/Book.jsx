@@ -1,6 +1,6 @@
 function Book({ title, author, cover, year, onClick, reading = false }) {
 	return (
-		<div className="flex flex-col bg-white border-[1px] border-gray-400 rounded-xl overflow-hidden shadow-xl hover:scale-105 hover:shadow-2xl transform duration-500 mb-5 py-2">
+		<div className="flex flex-col bg-white border-[1px] border-gray-400 rounded-xl shadow-xl hover:scale-105 hover:shadow-2xl transform duration-500 mb-5 py-2">
 			<div className="relative">
 				<img className="max-w-90 w-80 m-auto rounded-lg aspect-[9/14] object-contain" src={cover} />
 			</div>

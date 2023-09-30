@@ -20,3 +20,10 @@ The instructions can be found in the [README.INSTRUCTIONS.md](./README.INSTRUCTI
 - [ ] **Deploy**: App must be deploy en some free hosting service (Netlify, Vercel, Firebase, etc) and must be accessible through a public URL. Indicate the URL in the README file.
 
 - [ ] **Test**: App must contain AT LEAST one test. Test whatever you consider to be the most important in your app.
+
+# Extras
+
+- [ ] Implement search functionality in available books list.
+- [ ] Add a new filter to filter books by page number.
+- [ ] Allow reorganization of books by priority in reading list.
+- [ ] Make the web responsive.
