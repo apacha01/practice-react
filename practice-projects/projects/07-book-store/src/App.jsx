@@ -63,7 +63,7 @@ function App() {
 				}
 			</main>
 			<aside className={`flex flex-col gap-4 absolute top-0 right-0 w-96 px-12 pt-20 bg-black h-full overflow-y-scroll ${toggleReadingList ? '' : 'hidden'}`}>
-				<strong className='rounded-full p-2 bg-red-400 text-white aspect-square m-auto text-center'>{readingBooks.length}</strong>
+				<strong className='rounded-full p-2 bg-red-400 text-white aspect-square ml-auto text-center'>{readingBooks.length}</strong>
 				{
 					readingBooks?.map(b => {
 						return <Book onClick={() => removeFromReadingList(b)} key={b.isbn} {...b} reading={true} />;
