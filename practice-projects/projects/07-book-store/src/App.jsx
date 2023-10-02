@@ -1,20 +1,14 @@
 import { useState } from 'react';
 import useBooks from './hooks/useBooks';
 import useFilters from './hooks/useFilters';
-import ComboBox from './components/ComboBox';
 import BookList from './components/BookList';
+import Filters from './components/Filters';
 import { Toaster, toast } from 'sonner';
-import SearchInput from './components/TextInput';
 
 function App() {
 	const { addToReadingList, removeFromReadingList } = useBooks();
 	const [toggleReadingList, setToggleReadingList] = useState(false);
-	const { filteredAvailableBooks, filteredReadingBooks, possibleGenres, setFilters } = useFilters({ genre: 'All' }, false);
-	const [search, setSearch] = useState('');
-
-	const filterGenre = (g) => {
-		setFilters(f => ({ ...f, genre: g }));
-	};
+	const { filteredAvailableBooks, filteredReadingBooks, setFilters } = useFilters({ genre: 'All' }, false);
 
 	const handleAddingBook = (book) => {
 		addToReadingList(book);
@@ -24,24 +18,6 @@ function App() {
 	const handleRemovingBook = (book) => {
 		removeFromReadingList(book);
 		toast.error(`'${book.title}' removed to reading list`);
-	};
-
-	const handleTyping = (e) => {
-		let newSearch = e.target.value;
-		let isbn = undefined, author = undefined, title = undefined;
-
-		// cant type space at beggining
-		if (newSearch.startsWith(' ')) return;
-
-		// check if isbn
-		let isbnSearch = newSearch.match(/\d{3}-\d{10}/g);
-		if (isbnSearch != null) isbn = isbnSearch[0];
-		// search by title / author
-		else if (newSearch.length > 0) author = title = newSearch;
-
-		setFilters(f => ({ ...f, isbn, title, author }));
-
-		setSearch(newSearch);
 	};
 
 	return (
@@ -79,21 +55,8 @@ function App() {
 
 				</button>
 			</div>
-			<div className="flex items-center my-6 gap-4">
-				<SearchInput
-					label='Title / Author / ISBN'
-					id='title-search'
-					placeholder='Harry Potter, Orwell or 978-0618640157 ...'
-					value={search}
-					onType={handleTyping}
-				/>
-
-				<ComboBox
-					id='genre-filter'
-					label='Genre:'
-					onChangeSelection={filterGenre}
-					options={possibleGenres}
-				/>
+			<div className='flex justify-between items-center'>
+				<Filters setFilters={setFilters} />
 				<strong className='rounded-full p-3 bg-blue-400 text-white aspect-square'>{filteredAvailableBooks.length}</strong>
 			</div>
 			<main className="m-auto grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8">
@@ -103,7 +66,7 @@ function App() {
 				<strong className='rounded-full p-2 bg-red-400 text-white aspect-square ml-auto text-center'>{filteredReadingBooks.length}</strong>
 				<BookList books={filteredReadingBooks} onBookClick={handleRemovingBook} isReadingList />
 			</aside>
-			<Toaster position='top-center' richColors />
+			<Toaster position='top-center' richColors duration={2000} />
 		</div>
 	);
 }
