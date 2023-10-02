@@ -1,0 +1,3 @@
+const DEFAULT_GENRE_TEXT = 'All';
+
+export { DEFAULT_GENRE_TEXT };

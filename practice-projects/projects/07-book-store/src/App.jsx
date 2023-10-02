@@ -2,13 +2,16 @@ import { useState } from 'react';
 import Book from './components/Book';
 import useBooks from './hooks/useBooks';
 import ComboBox from './components/ComboBox';
+import useFilters from './hooks/useFilters';
 
 function App() {
-	const { availableBooks, readingBooks, addToReadingList, removeFromReadingList } = useBooks();
+	const { addToReadingList, removeFromReadingList } = useBooks();
 	const [toggleReadingList, setToggleReadingList] = useState(false);
-	const [filterByGenre, setFilterByGenre] = useState('all');
+	const { filteredAvailableBooks, filteredReadingBooks, possibleGenres, setFilters } = useFilters({ initialFilters: { genre: 'All' }, applyToReadingList: false });
 
-	const filteredBooks = availableBooks.filter(b => !filterByGenre.localeCompare(b.genre.toLowerCase().replace(' ', '-')) || filterByGenre === 'all');
+	const filterGenre = (g) => {
+		setFilters(f => ({ ...f, genre: g }));
+	};
 
 	return (
 		<div className='relative min-h-screen px-8'>
@@ -46,27 +49,33 @@ function App() {
 				</button>
 			</div>
 			<div className="flex items-center my-6 gap-4">
+				<input
+					className='w-96 border-[1px] border-black p-1'
+					type="text"
+					name="title"
+					id="title"
+					placeholder='Harry Potter, 1984 or 978-0618640157 ...'
+				/>
+
 				<ComboBox
 					id='genre-filter'
 					label='Genre:'
-					onChangeSelection={setFilterByGenre}
-					options={
-						Array.from(new Set(availableBooks.map(b => b.genre))).map(g => ({ key: g.toLowerCase().replace(' ', '-'), text: g }))
-					}
+					onChangeSelection={filterGenre}
+					options={possibleGenres}
 				/>
-				<strong className='rounded-full p-3 bg-blue-400 text-white aspect-square'>{filteredBooks.length}</strong>
+				<strong className='rounded-full p-3 bg-blue-400 text-white aspect-square'>{filteredAvailableBooks.length}</strong>
 			</div>
 			<main className="m-auto grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8">
 				{
-					filteredBooks?.map(b => {
+					filteredAvailableBooks?.map(b => {
 						return <Book onClick={() => addToReadingList(b)} key={b.isbn} {...b} />;
 					})
 				}
 			</main>
 			<aside className={`flex flex-col gap-4 absolute top-0 right-0 w-96 px-12 pt-20 bg-black h-full overflow-y-scroll ${toggleReadingList ? '' : 'hidden'}`}>
-				<strong className='rounded-full p-2 bg-red-400 text-white aspect-square ml-auto text-center'>{readingBooks.length}</strong>
+				<strong className='rounded-full p-2 bg-red-400 text-white aspect-square ml-auto text-center'>{filteredReadingBooks.length}</strong>
 				{
-					readingBooks?.map(b => {
+					filteredReadingBooks?.map(b => {
 						return <Book onClick={() => removeFromReadingList(b)} key={b.isbn} {...b} reading={true} />;
 					})
 				}
