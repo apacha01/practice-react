@@ -22,10 +22,12 @@ const getFilteredBooks = (books, filters = {}) => {
 	return books.filter(b => {
 
 		if (filters.isbn?.localeCompare(b.isbn)) return false;
-		if (filters.author?.name.localeCompare(b.author.name)) return false;
+		if ((filters.title !== undefined && !b.title.toLowerCase().includes(filters.title.toLowerCase()))
+			&& (filters.author !== undefined && !b.author.name.toLowerCase().includes(filters.author.toLowerCase()))
+		)
+			return false;
 		if (filters.genre?.localeCompare(b.genre) && filters.genre?.localeCompare(DEFAULT_GENRE_TEXT)) return false;
 		if (filters.pages !== undefined && !(b.pages >= filters.pages.min && b.pages <= filters.pages.max)) return false;
-		if (filters.title?.contains(b.title)) return false;
 		if (filters.year !== undefined && !(b.year >= filters.year.min && b.year <= filters.year.max)) return false;
 
 		return true;

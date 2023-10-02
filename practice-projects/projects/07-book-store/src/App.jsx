@@ -4,6 +4,7 @@ import useFilters from './hooks/useFilters';
 import ComboBox from './components/ComboBox';
 import BookList from './components/BookList';
 import { Toaster, toast } from 'sonner';
+import SearchInput from './components/TextInput';
 
 function App() {
 	const { addToReadingList, removeFromReadingList } = useBooks();
@@ -27,15 +28,18 @@ function App() {
 
 	const handleTyping = (e) => {
 		let newSearch = e.target.value;
+		let isbn = undefined, author = undefined, title = undefined;
 
 		// cant type space at beggining
 		if (newSearch.startsWith(' ')) return;
 
 		// check if isbn
-		let isbn = newSearch.match(/\d{3}-\d{10}/g);
-		if (isbn != null)
-			setFilters(f => ({ ...f, isbn: isbn[0] }));
-		else setFilters(f => ({ ...f, isbn: undefined }));
+		let isbnSearch = newSearch.match(/\d{3}-\d{10}/g);
+		if (isbnSearch != null) isbn = isbnSearch[0];
+		// search by title / author
+		else if (newSearch.length > 0) author = title = newSearch;
+
+		setFilters(f => ({ ...f, isbn, title, author }));
 
 		setSearch(newSearch);
 	};
@@ -76,15 +80,12 @@ function App() {
 				</button>
 			</div>
 			<div className="flex items-center my-6 gap-4">
-				<label htmlFor="title">Title / Author / ISBN</label>
-				<input
-					className='w-96 border-[1px] border-black p-1'
-					type="text"
-					name="title"
-					id="title"
-					placeholder='Harry Potter, 1984 or 978-0618640157 ...'
+				<SearchInput
+					label='Title / Author / ISBN'
+					id='title-search'
+					placeholder='Harry Potter, Orwell or 978-0618640157 ...'
 					value={search}
-					onChange={handleTyping}
+					onType={handleTyping}
 				/>
 
 				<ComboBox
