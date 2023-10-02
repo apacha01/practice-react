@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Book from './components/Book';
 import useBooks from './hooks/useBooks';
+import ComboBox from './components/ComboBox';
 
 function App() {
 	const { availableBooks, readingBooks, addToReadingList, removeFromReadingList } = useBooks();
@@ -44,16 +45,16 @@ function App() {
 
 				</button>
 			</div>
-			<div className="flex my-6 gap-4">
-				<select name="filters" onChange={(e) => setFilterByGenre(e.target.value)}>
-					<option value="all">All</option>
-					{
-						Array.from(new Set(availableBooks.map(b => b.genre))).map((g, i) => {
-							return <option key={i} value={g.toLowerCase().replace(' ', '-')}>{g}</option>;
-						})
+			<div className="flex items-center my-6 gap-4">
+				<ComboBox
+					id='genre-filter'
+					label='Genre:'
+					onChangeSelection={setFilterByGenre}
+					options={
+						Array.from(new Set(availableBooks.map(b => b.genre))).map(g => ({ key: g.toLowerCase().replace(' ', '-'), text: g }))
 					}
-				</select>
-				<strong className='rounded-full p-4 bg-blue-400 text-white aspect-square'>{filteredBooks.length}</strong>
+				/>
+				<strong className='rounded-full p-3 bg-blue-400 text-white aspect-square'>{filteredBooks.length}</strong>
 			</div>
 			<main className="m-auto grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8">
 				{
