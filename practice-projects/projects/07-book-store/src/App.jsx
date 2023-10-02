@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import Book from './components/Book';
 import useBooks from './hooks/useBooks';
-import ComboBox from './components/ComboBox';
 import useFilters from './hooks/useFilters';
+import Book from './components/Book';
+import ComboBox from './components/ComboBox';
+import BookList from './components/BookList';
+import { Toaster, toast } from 'sonner';
 
 function App() {
 	const { addToReadingList, removeFromReadingList } = useBooks();
@@ -11,6 +13,16 @@ function App() {
 
 	const filterGenre = (g) => {
 		setFilters(f => ({ ...f, genre: g }));
+	};
+
+	const handleAddingBook = (book) => {
+		addToReadingList(book);
+		toast.success(`'${book.title}' added to reading list`);
+	};
+
+	const handleRemovingBook = (book) => {
+		removeFromReadingList(book);
+		toast.error(`'${book.title}' removed to reading list`);
 	};
 
 	return (
@@ -49,6 +61,7 @@ function App() {
 				</button>
 			</div>
 			<div className="flex items-center my-6 gap-4">
+				<label htmlFor="title">Title / Author / ISBN</label>
 				<input
 					className='w-96 border-[1px] border-black p-1'
 					type="text"
@@ -66,20 +79,13 @@ function App() {
 				<strong className='rounded-full p-3 bg-blue-400 text-white aspect-square'>{filteredAvailableBooks.length}</strong>
 			</div>
 			<main className="m-auto grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8">
-				{
-					filteredAvailableBooks?.map(b => {
-						return <Book onClick={() => addToReadingList(b)} key={b.isbn} {...b} />;
-					})
-				}
+				<BookList books={filteredAvailableBooks} onBookClick={handleAddingBook} />
 			</main>
 			<aside className={`flex flex-col gap-4 absolute top-0 right-0 w-96 px-12 pt-20 bg-black h-full overflow-y-scroll ${toggleReadingList ? '' : 'hidden'}`}>
 				<strong className='rounded-full p-2 bg-red-400 text-white aspect-square ml-auto text-center'>{filteredReadingBooks.length}</strong>
-				{
-					filteredReadingBooks?.map(b => {
-						return <Book onClick={() => removeFromReadingList(b)} key={b.isbn} {...b} reading={true} />;
-					})
-				}
+				<BookList books={filteredReadingBooks} onBookClick={handleRemovingBook} isReadingList />
 			</aside>
+			<Toaster position='top-center' richColors />
 		</div>
 	);
 }
