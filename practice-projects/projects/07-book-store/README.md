@@ -23,7 +23,7 @@ The instructions can be found in the [README.INSTRUCTIONS.md](./README.INSTRUCTI
 
 # Extras
 
-- [ ] Implement search functionality in available books list.
+- [x] Implement search functionality in available books list.
 - [ ] Add a new filter to filter books by page number.
 - [ ] Allow reorganization of books by priority in reading list.
 - [ ] Make the web responsive.
