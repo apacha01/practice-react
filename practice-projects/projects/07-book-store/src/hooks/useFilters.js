@@ -3,7 +3,7 @@ import { getFilteredBooks } from '../services/books';
 import useBooks from './useBooks';
 import { DEFAULT_GENRE_TEXT } from '../constants/filters';
 
-const useFilters = ({ initialFilters = {}, applyToReadingList = false }) => {
+const useFilters = (initialFilters = {}, applyToReadingList = false) => {
 	const { availableBooks, readingBooks } = useBooks();
 	const [filters, setFilters] = useState(initialFilters);
 

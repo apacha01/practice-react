@@ -7,7 +7,7 @@ import useFilters from './hooks/useFilters';
 function App() {
 	const { addToReadingList, removeFromReadingList } = useBooks();
 	const [toggleReadingList, setToggleReadingList] = useState(false);
-	const { filteredAvailableBooks, filteredReadingBooks, possibleGenres, setFilters } = useFilters({ initialFilters: { genre: 'All' }, applyToReadingList: false });
+	const { filteredAvailableBooks, filteredReadingBooks, possibleGenres, setFilters } = useFilters({ genre: 'All' }, false);
 
 	const filterGenre = (g) => {
 		setFilters(f => ({ ...f, genre: g }));
