@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import useBooks from './hooks/useBooks';
 import useFilters from './hooks/useFilters';
-import Book from './components/Book';
 import ComboBox from './components/ComboBox';
 import BookList from './components/BookList';
 import { Toaster, toast } from 'sonner';
@@ -10,6 +9,7 @@ function App() {
 	const { addToReadingList, removeFromReadingList } = useBooks();
 	const [toggleReadingList, setToggleReadingList] = useState(false);
 	const { filteredAvailableBooks, filteredReadingBooks, possibleGenres, setFilters } = useFilters({ genre: 'All' }, false);
+	const [search, setSearch] = useState('');
 
 	const filterGenre = (g) => {
 		setFilters(f => ({ ...f, genre: g }));
@@ -23,6 +23,21 @@ function App() {
 	const handleRemovingBook = (book) => {
 		removeFromReadingList(book);
 		toast.error(`'${book.title}' removed to reading list`);
+	};
+
+	const handleTyping = (e) => {
+		let newSearch = e.target.value;
+
+		// cant type space at beggining
+		if (newSearch.startsWith(' ')) return;
+
+		// check if isbn
+		let isbn = newSearch.match(/\d{3}-\d{10}/g);
+		if (isbn != null)
+			setFilters(f => ({ ...f, isbn: isbn[0] }));
+		else setFilters(f => ({ ...f, isbn: undefined }));
+
+		setSearch(newSearch);
 	};
 
 	return (
@@ -68,6 +83,8 @@ function App() {
 					name="title"
 					id="title"
 					placeholder='Harry Potter, 1984 or 978-0618640157 ...'
+					value={search}
+					onChange={handleTyping}
 				/>
 
 				<ComboBox
