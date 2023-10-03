@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import ComboBox from './ComboBox';
 import SearchInput from './TextInput';
-import useFilters from '../hooks/useFilters';
+import DoubleSlider from './DoubleSlider';
+import useBooks from '../hooks/useBooks';
+import { getGenresList } from '../services/books';
 
-function Filters({ setFilters }) {
+function Filters({ filters, setFilters }) {
 	const [search, setSearch] = useState('');
-	const { possibleGenres } = useFilters();
-
+	const { availableBooks } = useBooks();
 
 	const filterGenre = (g) => {
 		setFilters(f => ({ ...f, genre: g }));
@@ -30,8 +31,12 @@ function Filters({ setFilters }) {
 		setSearch(newSearch);
 	};
 
+	const filterPages = (p) => {
+		setFilters(f => ({ ...f, pages: { min: p.min, max: p.max } }));
+	};
+
 	return (
-		<section className="flex items-center my-6 gap-4">
+		<section className="flex items-center my-6 gap-8 w-2/3">
 			<SearchInput
 				label='Title / Author / ISBN'
 				id='title-search'
@@ -44,7 +49,13 @@ function Filters({ setFilters }) {
 				id='genre-filter'
 				label='Genre:'
 				onChangeSelection={filterGenre}
-				options={possibleGenres}
+				options={getGenresList(availableBooks)}
+			/>
+
+			<DoubleSlider
+				range={{ min: 0, max: 1200 }}
+				values={{ min: filters.pages?.min, max: filters.pages?.max }}
+				onChange={filterPages}
 			/>
 		</section>
 	);

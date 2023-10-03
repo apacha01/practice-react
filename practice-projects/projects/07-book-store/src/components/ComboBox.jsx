@@ -1,6 +1,6 @@
 function ComboBox({ options = [], label = '', onChangeSelection = () => { }, id = '' }) {
 	return (
-		<>
+		<div className="flex flex-wrap gap-4">
 			<label htmlFor={id}>{label}</label>
 			<select name={id} id={id} onChange={(e) => onChangeSelection(e.target.value)}>
 				{
@@ -9,7 +9,7 @@ function ComboBox({ options = [], label = '', onChangeSelection = () => { }, id 
 					})
 				}
 			</select>
-		</>
+		</div>
 	);
 }
 

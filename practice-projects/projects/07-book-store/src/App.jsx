@@ -10,7 +10,7 @@ import { Toaster, toast } from 'sonner';
 function App() {
 	const { addToReadingList, removeFromReadingList } = useBooks();
 	const [toggleReadingList, setToggleReadingList] = useState(false);
-	const { filteredAvailableBooks, filteredReadingBooks, setFilters } = useFilters({ genre: 'All' }, false);
+	const { filteredAvailableBooks, filteredReadingBooks, filters, setFilters } = useFilters({ genre: 'All', pages: { min: 0, max: 1200 } }, false);
 
 	const handleAddingBook = (book) => {
 		addToReadingList(book);
@@ -31,13 +31,13 @@ function App() {
 				</button>
 			</header>
 			<div className='flex justify-between items-center'>
-				<Filters setFilters={setFilters} />
+				<Filters setFilters={setFilters} filters={filters} />
 				<strong className='rounded-full p-3 bg-blue-400 text-white aspect-square'>{filteredAvailableBooks.length}</strong>
 			</div>
 			<main className="m-auto grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8">
 				<BookList books={filteredAvailableBooks} onBookClick={handleAddingBook} />
 			</main>
-			<aside className={`flex flex-col gap-4 absolute top-0 right-0 w-96 px-12 pt-20 bg-black h-full overflow-y-scroll ${toggleReadingList ? '' : 'hidden'}`}>
+			<aside className={`flex flex-col gap-4 absolute z-40 top-0 right-0 w-96 px-12 pt-20 transform duration-500 bg-black h-full overflow-y-scroll ${toggleReadingList ? '' : 'hidden'}`}>
 				<strong className='rounded-full p-2 bg-red-400 text-white aspect-square ml-auto text-center'>{filteredReadingBooks.length}</strong>
 				<BookList books={filteredReadingBooks} onBookClick={handleRemovingBook} isReadingList />
 			</aside>

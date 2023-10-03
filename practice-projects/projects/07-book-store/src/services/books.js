@@ -34,4 +34,8 @@ const getFilteredBooks = (books, filters = {}) => {
 	});
 };
 
-export { getAllBooks, getFilteredBooks };
+const getGenresList = (books) => {
+	return Array.from(new Set(books.map(b => b.genre)).add(DEFAULT_GENRE_TEXT)).sort();
+};
+
+export { getAllBooks, getFilteredBooks, getGenresList };
