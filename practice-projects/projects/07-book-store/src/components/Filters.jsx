@@ -36,7 +36,7 @@ function Filters({ filters, setFilters }) {
 	};
 
 	return (
-		<section className="flex items-center my-6 gap-8 w-2/3">
+		<section className="flex flex-wrap items-center my-6 gap-8 w-full">
 			<SearchInput
 				label='Title / Author / ISBN'
 				id='title-search'

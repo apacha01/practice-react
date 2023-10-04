@@ -1,9 +1,9 @@
 function SearchInput({ label, id, placeholder, value, onType }) {
 	return (
-		<div className="flex gap-4 items-center flex-wrap">
+		<div className="flex gap-4 items-center flex-wrap max-w-full">
 			<label htmlFor={id}>{label}</label>
 			<input
-				className='w-96 border-[1px] border-black p-1'
+				className='max-w-full w-80 border-[1px] border-black p-1'
 				role="search"
 				type="text"
 				name={id}

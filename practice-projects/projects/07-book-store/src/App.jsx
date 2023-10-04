@@ -30,14 +30,14 @@ function App() {
 					{toggleReadingList ? <ScratchedBooksIcon /> : <BooksIcon />}
 				</button>
 			</header>
-			<div className='flex justify-between items-center'>
+			<div className='flex flex-col md:flex-row justify-between items-center'>
 				<Filters setFilters={setFilters} filters={filters} />
-				<strong className='rounded-full p-3 bg-blue-400 text-white aspect-square'>{filteredAvailableBooks.length}</strong>
+				<strong className='mb-8 md:ml-8 md:mb-0 rounded-full p-3 bg-blue-400 text-white aspect-square'>{filteredAvailableBooks.length}</strong>
 			</div>
-			<main className="m-auto grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8">
+			<main className="m-auto grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-8">
 				<BookList books={filteredAvailableBooks} onBookClick={handleAddingBook} />
 			</main>
-			<aside className={`flex flex-col gap-4 absolute z-40 top-0 right-0 w-96 px-12 pt-20 transform duration-500 bg-black h-full overflow-y-scroll ${toggleReadingList ? '' : 'hidden'}`}>
+			<aside className={`flex flex-col gap-4 absolute z-40 top-0 right-0 w-screen md:w-96 px-12 pt-32 transform duration-500 bg-black h-full overflow-y-scroll ${toggleReadingList ? '' : 'hidden'}`}>
 				<strong className='rounded-full p-2 bg-red-400 text-white aspect-square ml-auto text-center'>{filteredReadingBooks.length}</strong>
 				<BookList books={filteredReadingBooks} onBookClick={handleRemovingBook} isReadingList />
 			</aside>
