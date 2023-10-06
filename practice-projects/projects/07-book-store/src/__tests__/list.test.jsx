@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import App from '../App.jsx';
 
-describe('reading list tests', async () => {
+describe('reading list book tests', async () => {
 	it('adds a book to reading list', async () => {
 		// render app
 		render(<App />);
@@ -54,5 +54,23 @@ describe('reading list tests', async () => {
 
 		expect(screen.getByRole('available-list').innerHTML).toContain('El Señor de los Anillos');
 		expect(screen.getByRole('reading-list').innerHTML).not.toContain('El Señor de los Anillos');
+	});
+});
+
+describe('available books filters test', async () => {
+	it('selects a genre', async () => {
+		// render app
+		render(<App />);
+
+		const genreSelector = screen.getByLabelText('Genre:');
+
+		fireEvent.change(genreSelector, { target: { value: 'Zombies' } });
+
+		// check if counter updated
+		expect(screen.getByRole('available-books-counter').innerHTML).toBe('1');
+		//check the actual list
+		expect(screen.getByRole('available-list').childElementCount).toBe(1);
+		// only zombie book in mock
+		expect(screen.getByRole('available-list').innerHTML).toContain('Apocalipsis Zombie');
 	});
 });
