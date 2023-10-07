@@ -1,5 +1,6 @@
 import books from '../mocks/books.json';
 import { DEFAULT_GENRE_TEXT } from '../constants/filters';
+import { PRIORITY_VALUES } from '../constants/priority';
 
 const getAllBooks = async () => {
 	return books.library.map(b => ({
@@ -14,8 +15,13 @@ const getAllBooks = async () => {
 		synopsis: b.book.synopsis,
 		title: b.book.title,
 		year: b.book.year,
+		priority: PRIORITY_VALUES.Low
 	})
 	);
+};
+
+const sortBooksByPriority = (books) => {
+	return books.sort((b1, b2) => b1.priority.value - b2.priority.value);
 };
 
 const getFilteredBooks = (books, filters = {}) => {
@@ -38,4 +44,4 @@ const getGenresList = (books) => {
 	return Array.from(new Set(books.map(b => b.genre)).add(DEFAULT_GENRE_TEXT)).sort();
 };
 
-export { getAllBooks, getFilteredBooks, getGenresList };
+export { getAllBooks, getFilteredBooks, getGenresList, sortBooksByPriority };

@@ -1,11 +1,17 @@
 import Book from './Book';
 
 function BookList({ books = [], onBookClick = () => { }, isReadingList = false }) {
+
 	return (
 		<>
 			{
 				books.map(b => {
-					return <Book onClick={() => onBookClick(b)} key={b.isbn} {...b} readingList={isReadingList} />;
+					return <Book
+						{...b}
+						key={b.isbn}
+						readingList={isReadingList}
+						onClick={() => onBookClick(b)}
+					/>;
 				})
 			}
 		</>

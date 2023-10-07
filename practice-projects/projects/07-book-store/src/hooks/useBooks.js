@@ -18,6 +18,7 @@ const useBooks = () => {
 			const initializeAvailableBooks = async () => {
 				const books = await getAllBooks();
 				setAvailableBooks(books);
+				setReadingBooks([]);
 			};
 
 			initializeAvailableBooks();
@@ -28,7 +29,16 @@ const useBooks = () => {
 		}
 	}, []);
 
-	return { availableBooks, readingBooks, addToReadingList: addBookToReadingList, removeFromReadingList: removeBookFromReadingList };
+	const updateBookPriority = (priority, isbn = '') => {
+		const index = readingBooks.findIndex(b => !isbn.localeCompare(b.isbn));
+		if (index != -1) {
+			const newList = [...readingBooks];
+			newList[index].priority = priority;
+			setReadingBooks(newList);
+		}
+	};
+
+	return { availableBooks, readingBooks, addToReadingList: addBookToReadingList, removeFromReadingList: removeBookFromReadingList, updateBookPriority };
 };
 
 export default useBooks;

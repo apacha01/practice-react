@@ -6,6 +6,7 @@ import Filters from './components/Filters';
 import BooksIcon from './components/BooksIcon';
 import ScratchedBooksIcon from './components/ScratchedBooksIcon';
 import { Toaster, toast } from 'sonner';
+import { sortBooksByPriority } from './services/books';
 
 function App() {
 	const { addToReadingList, removeFromReadingList } = useBooks();
@@ -39,7 +40,7 @@ function App() {
 			</main>
 			<aside role='reading-list' className={`flex flex-col gap-4 absolute z-40 top-0 right-0 w-screen md:w-96 px-12 pt-32 transform duration-500 bg-black h-full overflow-y-scroll ${toggleReadingList ? '' : 'hidden'}`}>
 				<strong role='reading-books-counter' className='rounded-full p-2 bg-red-400 text-white aspect-square ml-auto text-center'>{filteredReadingBooks.length}</strong>
-				<BookList books={filteredReadingBooks} onBookClick={handleRemovingBook} isReadingList />
+				<BookList books={sortBooksByPriority(filteredReadingBooks)} onBookClick={handleRemovingBook} isReadingList />
 			</aside>
 			<Toaster position='top-center' richColors duration={2000} />
 		</div>

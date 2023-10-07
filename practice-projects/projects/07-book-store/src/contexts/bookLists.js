@@ -3,8 +3,14 @@ import { create } from 'zustand';
 const useBookLists = create((set) => ({
 	availableList: [],
 	readingList: [],
-	setAvailableList: (list) => set({ availableList: list }),
-	setReadingList: (list) => set({ readingList: list }),
+	setAvailableList: (list) => {
+		localStorage.setItem('available-list', JSON.stringify(list));
+		set({ availableList: list });
+	},
+	setReadingList: (list) => {
+		localStorage.setItem('reading-list', JSON.stringify(list));
+		set({ readingList: list });
+	},
 	addBookToReadingList: (book) => set(state => {
 		let index = state.availableList.findIndex(b => b.isbn === book.isbn);
 		let newAvailableList = state.availableList;
