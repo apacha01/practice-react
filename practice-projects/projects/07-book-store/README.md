@@ -1,10 +1,12 @@
 # Book web page with reading list
 An exercise simulating an interview taken from [this website](https://pruebastecnicas.com/).
 
-The instructions can be found in the [README.INSTRUCTIONS.md](./README.INSTRUCTIONS.md) in this same directory.
+The instructions for the interview can be found in the [README.INSTRUCTIONS.md](./README.INSTRUCTIONS.md) in this same directory.
 
-# Requirements
+# Summary
+A book store wants a web page to show their books with a reading list included in the page.
 
+## Requirements
 - [x] **Visualizing available books**: App must show a list of available books that the user can check.
 
 - [x] **Create a reading list**: User should be capable of creating a reading list from the available books. Within the UI it must be clear which books are in this list and which aren't. It should also be possible to move a book from reading list to available list.
@@ -17,13 +19,18 @@ The instructions can be found in the [README.INSTRUCTIONS.md](./README.INSTRUCTI
 
 - [x] **Synchronization between tabs**: If the user open the app in two different tabs, the changes in one tab must be reflected on the other. Without using BackEnd.
 
-- [ ] **Deploy**: App must be deploy en some free hosting service (Netlify, Vercel, Firebase, etc) and must be accessible through a public URL. Indicate the URL in the README file.
+- [x] **Deploy**: App must be deploy en some free hosting service (Netlify, Vercel, Firebase, etc) and must be accessible through a public URL. Indicate the URL in the README file.
 
 - [x] **Test**: App must contain AT LEAST one test. Test whatever you consider to be the most important in your app.
 
 # Extras
-
 - [x] Implement search functionality in available books list.
 - [x] Add a new filter to filter books by page number.
 - [x] Allow reorganization of books by priority in reading list.
 - [x] Make the web responsive.
+
+# Installation
+* Clone this repo.
+* Run `npm install`
+* Run `npm run dev` for a local run and `npm run tailwind` if you are going to edit styles.
+* Run `npm build` for production.
