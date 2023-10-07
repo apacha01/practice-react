@@ -8,11 +8,11 @@
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d dist",
 		"dev": "vite",
-		"tailwind": "npx tailwindcss -i ./src/assets/css/tailwind.css -o ./dist/tailwind.css --watch",
+		"tailwind": "npx tailwindcss -i ./src/assets/css/tailwind.css -o ./src/assets/css/index.css --watch",
 		"test": "vitest",
 		"build": "vite build",
 		"lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-		"preview": "vite preview"
+		"preview": "npm run build && vite preview"
 	},
 	"dependencies": {
 		"rc-slider": "^10.3.0",
