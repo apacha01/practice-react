@@ -81,6 +81,16 @@ describe('available books filters test', () => {
 		// check is that book in the list
 		expect(screen.getByRole('available-list').innerHTML).toContain('Juego de Tronos');
 
+		await userEvent.clear(searchBar);
+		await userEvent.type(searchBar, '978-0618640157');
+
+		// check counter
+		expect(screen.getByRole('available-books-counter').innerHTML).toBe('1');
+		// check the actual list
+		expect(screen.getByRole('available-list').childElementCount).toBe(1);
+		// check is that book in the list
+		expect(screen.getByRole('available-list').innerHTML).toContain('El Señor de los Anillos');
+
 	});
 
 	it('selects a genre', async () => {
