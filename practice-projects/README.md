@@ -11,3 +11,4 @@ A monorepo multi-package repository with all the repos i made to practice React.
 | 04 | Counter | [code](projects/04-zustand-counter/) | not deployed yet |
 | 05 | Movies & Series | [code](projects/05-chedoc-movies/) | not deployed yet |
 | 06 | Website for checking cryptos | [code](projects/06-cryptopacha/) | not deployed yet |
+| 06 | Book website with reading list | [code](projects/07-book-store/) | [deploy](https://apacha01.github.io/reading-list-interview/) |
