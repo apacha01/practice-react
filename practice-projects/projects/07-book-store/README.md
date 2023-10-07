@@ -33,4 +33,4 @@ A book store wants a web page to show their books with a reading list included i
 * Clone this repo.
 * Run `npm install`
 * Run `npm run dev` for a local run and `npm run tailwind` if you are going to edit styles.
-* Run `npm build` for production.
+* Run `npm build` for production or `npm run preview` for a production preview.
