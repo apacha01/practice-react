@@ -109,12 +109,5 @@ describe('available books filters test', () => {
 		expect(screen.getByRole('available-list').innerHTML).toContain('Apocalipsis Zombie');
 	});
 
-	// it('select a min page of 50 and max page of 800', async () => {
-	// 	// render app
-	// 	render(<App />);
-
-	// 	const pagesSelector = screen.getByLabelText('Pages');
-
-	// 	fireEvent.change(pagesSelector, { target: { value: { min: 50, max: 800 } } });
-	// });
+	// no user event for sliders
 });
